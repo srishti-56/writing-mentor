@@ -157,4 +157,4 @@ This project is open source and available under the MIT License.
 
 **Happy Writing!** 🖋️
 
-Remember: The best essays come from genuine exploration and authentic voice. Use this tool to push your thinking deeper, not to replace your own insights.
+The best essays come from genuine exploration and authentic voice. Use this tool to think deeper!
