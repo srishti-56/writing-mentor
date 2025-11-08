@@ -1,0 +1,3474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing Mentor - Essay Development Assistant</title>
+    <style>
+        :root {
+  /* Primitive Color Tokens */
+  --color-white: rgba(255, 255, 255, 1);
+  --color-black: rgba(0, 0, 0, 1);
+  --color-cream-50: rgba(252, 252, 249, 1);
+  --color-cream-100: rgba(255, 255, 253, 1);
+  --color-gray-200: rgba(245, 245, 245, 1);
+  --color-gray-300: rgba(167, 169, 169, 1);
+  --color-gray-400: rgba(119, 124, 124, 1);
+  --color-slate-500: rgba(98, 108, 113, 1);
+  --color-brown-600: rgba(94, 82, 64, 1);
+  --color-charcoal-700: rgba(31, 33, 33, 1);
+  --color-charcoal-800: rgba(38, 40, 40, 1);
+  --color-slate-900: rgba(19, 52, 59, 1);
+  --color-teal-300: rgba(50, 184, 198, 1);
+  --color-teal-400: rgba(45, 166, 178, 1);
+  --color-teal-500: rgba(33, 128, 141, 1);
+  --color-teal-600: rgba(29, 116, 128, 1);
+  --color-teal-700: rgba(26, 104, 115, 1);
+  --color-teal-800: rgba(41, 150, 161, 1);
+  --color-red-400: rgba(255, 84, 89, 1);
+  --color-red-500: rgba(192, 21, 47, 1);
+  --color-orange-400: rgba(230, 129, 97, 1);
+  --color-orange-500: rgba(168, 75, 47, 1);
+
+  /* RGB versions for opacity control */
+  --color-brown-600-rgb: 94, 82, 64;
+  --color-teal-500-rgb: 33, 128, 141;
+  --color-slate-900-rgb: 19, 52, 59;
+  --color-slate-500-rgb: 98, 108, 113;
+  --color-red-500-rgb: 192, 21, 47;
+  --color-red-400-rgb: 255, 84, 89;
+  --color-orange-500-rgb: 168, 75, 47;
+  --color-orange-400-rgb: 230, 129, 97;
+
+  /* Background color tokens (Light Mode) */
+  --color-bg-1: rgba(59, 130, 246, 0.08); /* Light blue */
+  --color-bg-2: rgba(245, 158, 11, 0.08); /* Light yellow */
+  --color-bg-3: rgba(34, 197, 94, 0.08); /* Light green */
+  --color-bg-4: rgba(239, 68, 68, 0.08); /* Light red */
+  --color-bg-5: rgba(147, 51, 234, 0.08); /* Light purple */
+  --color-bg-6: rgba(249, 115, 22, 0.08); /* Light orange */
+  --color-bg-7: rgba(236, 72, 153, 0.08); /* Light pink */
+  --color-bg-8: rgba(6, 182, 212, 0.08); /* Light cyan */
+
+  /* Semantic Color Tokens (Light Mode) */
+  --color-background: var(--color-cream-50);
+  --color-surface: var(--color-cream-100);
+  --color-text: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-500);
+  --color-primary: var(--color-teal-500);
+  --color-primary-hover: var(--color-teal-600);
+  --color-primary-active: var(--color-teal-700);
+  --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-btn-primary-text: var(--color-cream-50);
+  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-error: var(--color-red-500);
+  --color-success: var(--color-teal-500);
+  --color-warning: var(--color-orange-500);
+  --color-info: var(--color-slate-500);
+  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+  --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+
+  /* Common style patterns */
+  --focus-ring: 0 0 0 3px var(--color-focus-ring);
+  --focus-outline: 2px solid var(--color-primary);
+  --status-bg-opacity: 0.15;
+  --status-border-opacity: 0.25;
+  --select-caret-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23134252' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  --select-caret-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+
+  /* RGB versions for opacity control */
+  --color-success-rgb: 33, 128, 141;
+  --color-error-rgb: 192, 21, 47;
+  --color-warning-rgb: 168, 75, 47;
+  --color-info-rgb: 98, 108, 113;
+
+  /* Typography */
+  --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, monospace;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-size-4xl: 30px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 550;
+  --font-weight-bold: 600;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --letter-spacing-tight: -0.01em;
+
+  /* Spacing */
+  --space-0: 0;
+  --space-1: 1px;
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-base: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04),
+    0 2px 4px -1px rgba(0, 0, 0, 0.02);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04),
+    0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+
+  /* Animation */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+}
+
+/* Dark mode colors */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* RGB versions for opacity control (Dark Mode) */
+    --color-gray-400-rgb: 119, 124, 124;
+    --color-teal-300-rgb: 50, 184, 198;
+    --color-gray-300-rgb: 167, 169, 169;
+    --color-gray-200-rgb: 245, 245, 245;
+
+    /* Background color tokens (Dark Mode) */
+    --color-bg-1: rgba(29, 78, 216, 0.15); /* Dark blue */
+    --color-bg-2: rgba(180, 83, 9, 0.15); /* Dark yellow */
+    --color-bg-3: rgba(21, 128, 61, 0.15); /* Dark green */
+    --color-bg-4: rgba(185, 28, 28, 0.15); /* Dark red */
+    --color-bg-5: rgba(107, 33, 168, 0.15); /* Dark purple */
+    --color-bg-6: rgba(194, 65, 12, 0.15); /* Dark orange */
+    --color-bg-7: rgba(190, 24, 93, 0.15); /* Dark pink */
+    --color-bg-8: rgba(8, 145, 178, 0.15); /* Dark cyan */
+
+    /* Semantic Color Tokens (Dark Mode) */
+    --color-background: var(--color-charcoal-700);
+    --color-surface: var(--color-charcoal-800);
+    --color-text: var(--color-gray-200);
+    --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+    --color-primary: var(--color-teal-300);
+    --color-primary-hover: var(--color-teal-400);
+    --color-primary-active: var(--color-teal-800);
+    --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+    --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+    --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-error: var(--color-red-400);
+    --color-success: var(--color-teal-300);
+    --color-warning: var(--color-orange-400);
+    --color-info: var(--color-gray-300);
+    --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+    --color-btn-primary-text: var(--color-slate-900);
+    --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+    --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+    --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    --button-border-secondary: rgba(var(--color-gray-400-rgb), 0.2);
+    --color-border-secondary: rgba(var(--color-gray-400-rgb), 0.2);
+    --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
+
+    /* Common style patterns - updated for dark mode */
+    --focus-ring: 0 0 0 3px var(--color-focus-ring);
+    --focus-outline: 2px solid var(--color-primary);
+    --status-bg-opacity: 0.15;
+    --status-border-opacity: 0.25;
+    --select-caret-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23134252' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    --select-caret-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+
+    /* RGB versions for dark mode */
+    --color-success-rgb: var(--color-teal-300-rgb);
+    --color-error-rgb: var(--color-red-400-rgb);
+    --color-warning-rgb: var(--color-orange-400-rgb);
+    --color-info-rgb: var(--color-gray-300-rgb);
+  }
+}
+
+/* Base styles */
+html {
+  font-size: var(--font-size-base);
+  font-family: var(--font-family-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  background-color: #000000;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+h1 {
+  font-size: var(--font-size-4xl);
+}
+h2 {
+  font-size: var(--font-size-3xl);
+}
+h3 {
+  font-size: var(--font-size-2xl);
+}
+h4 {
+  font-size: var(--font-size-xl);
+}
+h5 {
+  font-size: var(--font-size-lg);
+}
+h6 {
+  font-size: var(--font-size-md);
+}
+
+p {
+  margin: 0 0 var(--space-16) 0;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-16);
+  border-radius: var(--radius-base);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-standard);
+  border: none;
+  text-decoration: none;
+  position: relative;
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: var(--color-btn-primary-text);
+}
+
+.btn--primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.btn--primary:active {
+  background: var(--color-primary-active);
+}
+
+.btn--secondary {
+  background: var(--color-secondary);
+  color: var(--color-text);
+}
+
+.btn--secondary:hover {
+  background: var(--color-secondary-hover);
+}
+
+.btn--secondary:active {
+  background: var(--color-secondary-active);
+}
+
+.btn--outline {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.btn--outline:hover {
+  background: var(--color-secondary);
+}
+
+.btn--fancy {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-weight: 300;
+  font-size: clamp(1.5rem, 4vw, 3rem) !important;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  padding: var(--space-32) var(--space-32) !important;
+  min-height: 75px;
+  height: auto;
+  line-height: 1.2;
+  display: block;
+  width: 100%;
+  text-shadow: 0 0 20px rgba(135, 206, 250, 0.6), 0 0 40px rgba(135, 206, 250, 0.3);
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btn--fancy:hover {
+  background: transparent;
+  transform: translateY(-2px);
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 0 30px rgba(135, 206, 250, 0.8), 0 0 60px rgba(135, 206, 250, 0.5), 0 0 80px rgba(135, 206, 250, 0.2);
+}
+
+.moon-emoji {
+  display: inline-block;
+  transform: rotate(-15deg);
+  transition: transform 0.3s ease;
+  font-style: normal !important;
+}
+
+.btn--fancy:hover .moon-emoji {
+  transform: rotate(-5deg);
+}
+
+.btn--sm {
+  padding: var(--space-4) var(--space-12);
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-sm);
+}
+
+.btn--lg {
+  padding: var(--space-10) var(--space-20);
+  font-size: var(--font-size-lg);
+  border-radius: var(--radius-md);
+}
+
+.btn--full-width {
+  width: 100%;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Form elements */
+.form-control {
+  display: block;
+  width: 100%;
+  padding: var(--space-8) var(--space-12);
+  font-size: var(--font-size-md);
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+  transition: border-color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+textarea.form-control {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  resize: vertical;
+}
+
+select.form-control {
+  padding: var(--space-8) var(--space-12);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: var(--select-caret-light);
+  background-repeat: no-repeat;
+  background-position: right var(--space-12) center;
+  background-size: 16px;
+  padding-right: var(--space-32);
+}
+
+@media (prefers-color-scheme: dark) {
+  select.form-control {
+    background-image: var(--select-caret-dark);
+  }
+}
+
+.form-control:focus {
+  border-color: var(--color-primary);
+  outline: var(--focus-outline);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: var(--space-8);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+}
+
+.form-group {
+  margin-bottom: var(--space-8);
+}
+
+/* Card component */
+.card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: box-shadow var(--duration-normal) var(--ease-standard);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card__body {
+  padding: var(--space-16);
+}
+
+.card__header,
+.card__footer {
+  padding: var(--space-16);
+  border-bottom: 1px solid var(--color-card-border-inner);
+}
+
+/* Container layout */
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: var(--space-16);
+  padding-left: var(--space-16);
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: var(--container-sm);
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: var(--container-md);
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    max-width: var(--container-lg);
+  }
+}
+@media (min-width: 1280px) {
+  .container {
+    max-width: var(--container-xl);
+  }
+}
+
+/* Custom styles for the writing coach */
+.app-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: var(--space-32) var(--space-24);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  background-color: transparent;
+}
+
+/* SVG Doodle Placeholders */
+.doodle-container {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.doodle-placeholder {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: 2px dashed rgba(var(--color-primary-rgb), 0.3);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  text-align: center;
+  padding: var(--space-8);
+}
+
+.doodle-top-left {
+  top: -40px;
+  left: -60px;
+  width: 180px;
+  height: 180px;
+  transform: rotate(-12deg);
+}
+
+.doodle-top-right {
+  top: 60px;
+  right: -80px;
+  width: 160px;
+  height: 160px;
+  transform: rotate(15deg);
+}
+
+.doodle-bottom-left {
+  bottom: 100px;
+  left: -50px;
+  width: 200px;
+  height: 200px;
+  transform: rotate(8deg);
+}
+
+.doodle-bottom-right {
+  bottom: -30px;
+  right: -70px;
+  width: 150px;
+  height: 150px;
+  transform: rotate(-10deg);
+}
+
+.doodle-center-left {
+  top:60%;
+  left: -350px;
+  width: 900px;
+  height: 1200px;
+  transform: translateY(-50%) rotate(-10deg);
+}
+
+.doodle-center-right {
+  top: 50%;
+  right: -90px;
+  width: 170px;
+  height: 170px;
+  transform: translateY(-50%) rotate(-18deg);
+}
+
+.app-header {
+  position: relative;
+  margin-bottom: var(--space-32);
+  padding: var(--space-32) 0;
+  z-index: 1;
+}
+
+.app-header h1 {
+  font-size: clamp(4rem, 12vw, 9rem);
+  font-weight: bold;
+  line-height: 0.85;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-16);
+  color: #ffffff;
+  transform: rotate(-1.5deg);
+  position: relative;
+  z-index: 2;
+  text-shadow: 2px 2px 0 rgba(var(--color-primary-rgb), 0.1);
+}
+
+.app-header h1 .heading-word:first-child {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-style: normal;
+  opacity: 1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.app-header h1 .heading-word:last-child {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-style: italic;
+  opacity: 1;
+  font-weight: 300;
+}
+
+.app-header h1 .heading-word {
+  transition: opacity 0.3s ease;
+  display: inline-block;
+}
+
+@keyframes fadeInWord {
+  from {
+    opacity: 0.15;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.app-header p {
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  transform: rotate(0.8deg);
+  position: relative;
+  z-index: 2;
+  margin-left: var(--space-24);
+  font-weight: 300;
+}
+
+.main-content {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-32);
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .main-content {
+    grid-template-columns: 1fr;
+    gap: var(--space-24);
+  }
+  
+  .doodle-container {
+    display: none;
+  }
+}
+
+.input-section,
+.output-section {
+  height: 100%;
+  position: relative;
+}
+
+.input-section {
+  transform: rotate(-0.5deg);
+  padding: var(--space-24);
+  background: transparent;
+  border-radius: var(--radius-lg);
+  box-shadow: none;
+  border: none;
+  position: relative;
+}
+
+.input-section::after {
+  content: '';
+  position: absolute;
+  top: calc(var(--space-24) - 100px);
+  right: calc(var(--space-16) - 60px);
+  width: 300px;
+  height: 300px;
+  background-image: url('lamp.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 11;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.input-section::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--space-24) - 100px - 30px);
+  right: calc(var(--space-16) - 60px - 30px);
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 235, 59, 0.4) 0%, rgba(255, 235, 59, 0.1) 40%, transparent 70%);
+  z-index: 10;
+  pointer-events: none;
+  animation: lampFlicker 6.0s ease-in-out infinite;
+}
+
+@keyframes lampFlicker {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+    filter: blur(8px);
+  }
+  25% {
+    opacity: 0.9;
+    transform: scale(1.1);
+    filter: blur(10px);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.95);
+    filter: blur(6px);
+  }
+  75% {
+    opacity: 0.8;
+    transform: scale(1.05);
+    filter: blur(9px);
+  }
+}
+
+.output-section {
+  transform: rotate(0.8deg);
+  padding: var(--space-24);
+  background: transparent;
+  border-radius: var(--radius-lg);
+  box-shadow: none;
+  border: none;
+  position: relative;
+  margin-top: -40px;
+  z-index: 2;
+}
+
+.output-section::after {
+  content: '';
+  position: absolute;
+  top: calc(var(--space-24) + 60px); /* Default position when no feedback */
+  right: var(--space-16);
+  width: 600px;
+  height: 600px;
+  background-image: url('compass.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 11;
+  opacity: 0.7;
+  pointer-events: none;
+  transition: all var(--duration-normal) var(--ease-standard);
+}
+
+/* When feedback is present, move compass to align with heading */
+.output-section.has-feedback::after {
+  top: calc(var(--space-24) - 80px);
+  right: calc(var(--space-16) - 200px); /* Moved closer to right edge of screen */
+  width: 400px;
+  height: 400px;
+}
+
+.output-section::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--space-24) + 60px - 90px); /* Default position */
+  right: calc(var(--space-16) - 90px);
+  width: 780px;
+  height: 780px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 165, 0, 0.3) 0%, rgba(255, 165, 0, 0.15) 40%, transparent 70%);
+  z-index: 10;
+  pointer-events: none;
+  filter: blur(20px);
+  transition: all var(--duration-normal) var(--ease-standard);
+}
+
+/* When feedback is present, move glow to align with compass */
+.output-section.has-feedback::before {
+  top: calc(var(--space-24) - 80px - 60px);
+  right: calc(var(--space-16) - 200px - 60px); /* Aligned with new compass position */
+  width: 520px;
+  height: 520px;
+}
+
+.section-title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  margin-bottom: var(--space-24);
+  color: #ffffff;
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  transform: rotate(-0.3deg);
+  position: relative;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-style: italic;
+  text-align: center;
+}
+
+.section-title .heading-word {
+  opacity: 0.15;
+  transition: opacity 0.3s ease;
+  display: inline-block;
+}
+
+.section-title:hover .heading-word {
+  opacity: 1;
+  animation: fadeInWord 0.4s ease forwards;
+}
+
+.section-title:not(:hover) .heading-word {
+  transition: opacity 1s ease;
+}
+
+.writing-workspace {
+  min-height: 400px;
+  font-family: var(--font-family-base);
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  line-height: 1.7;
+  transform: rotate(0.1deg);
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  padding: var(--space-8);
+  position: relative;
+  transition: transform var(--duration-normal) var(--ease-standard);
+}
+
+.writing-workspace:focus {
+  transform: rotate(0deg);
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.writing-workspace-wrapper {
+  position: relative;
+}
+
+.writing-workspace-wrapper::after {
+  content: '_';
+  position: absolute;
+  left: var(--space-8);
+  top: var(--space-8);
+  color: rgba(255, 255, 255, 0.5);
+  animation: blink 1s infinite;
+  pointer-events: none;
+  display: block;
+}
+
+.writing-workspace-wrapper.has-text::after {
+  display: none;
+}
+
+.custom-prompt {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  min-height: 80px;
+  font-size: var(--font-size-sm);
+  position: relative;
+}
+
+.custom-prompt:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.custom-prompt-wrapper {
+  position: relative;
+}
+
+.custom-prompt-wrapper::after {
+  content: '_';
+  position: absolute;
+  left: var(--space-8);
+  top: var(--space-8);
+  color: rgba(255, 255, 255, 0.5);
+  animation: blink 1s infinite;
+  pointer-events: none;
+  display: block;
+}
+
+.custom-prompt-wrapper.has-text::after {
+  display: none;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.api-key-minimal {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-8);
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  position: relative;
+}
+
+.api-key-icon {
+  display: inline-block;
+}
+
+.api-key-input-minimal {
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  padding: 0;
+  margin: 0;
+  outline: none;
+  width: 200px;
+  caret-color: rgba(255, 255, 255, 0.6);
+}
+
+.api-key-input-minimal:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.api-key-input-minimal::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.0rem;
+}
+
+.blinking-underscore {
+  display: inline-block;
+  animation: blink 1s infinite;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  position: absolute;
+  left: calc(var(--space-8) + 1.5rem + var(--space-8));
+}
+
+.api-key-input-minimal:not(:placeholder-shown) ~ .blinking-underscore,
+.api-key-input-minimal:focus ~ .blinking-underscore {
+  display: none;
+}
+
+.doodle-image-half {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.6;
+  overflow: hidden;
+  clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 50% 100%);
+}
+
+.doodle-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.35;
+}
+
+.form-control {
+  transform: rotate(-0.1deg);
+  transition: transform var(--duration-normal) var(--ease-standard);
+}
+
+.form-control:focus {
+  transform: rotate(0deg);
+  border-width: 2px;
+}
+
+select.form-control {
+  font-weight: 500;
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+}
+
+.controls-row {
+  display: flex;
+  gap: var(--space-16);
+  align-items: end;
+  margin-bottom: var(--space-20);
+}
+
+.essay-type-group {
+  flex: 1;
+}
+
+.custom-prompt {
+  min-height: 80px;
+  font-size: var(--font-size-sm);
+}
+
+.action-buttons {
+  display: flex;
+  gap: var(--space-8);
+  margin-top: var(--space-16);
+  margin-bottom: var(--space-8);
+  flex-wrap: wrap;
+  position: relative;
+  min-height: 100px;
+  align-items: center;
+}
+
+.action-buttons .btn {
+  transform: rotate(-0.5deg);
+  transition: transform var(--duration-normal) var(--ease-standard);
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  font-weight: 600;
+  padding: var(--space-12) var(--space-24);
+  box-shadow: 4px 4px 0 rgba(var(--color-primary-rgb), 0.15);
+}
+
+.action-buttons .btn:hover {
+  transform: rotate(0deg) translateY(-2px);
+  box-shadow: 6px 6px 0 rgba(var(--color-primary-rgb), 0.2);
+}
+
+.action-buttons .btn--primary {
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  padding: var(--space-16) var(--space-32);
+}
+
+.form-group {
+  position: relative;
+  z-index: 1;
+}
+
+.form-group.collapsed {
+  margin-bottom: var(--space-8);
+}
+
+.form-group.collapsed .form-control,
+.form-group.collapsed .form-label,
+.form-group.collapsed .api-status,
+.form-group.collapsed .model-recommendation {
+  display: none;
+}
+
+.form-group:not(.collapsed) .collapse-icon {
+  display: none;
+}
+
+.form-group.collapsed .collapse-icon {
+  display: inline-flex;
+}
+
+.collapse-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-base);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: all var(--duration-normal) var(--ease-standard);
+  transform: rotate(-0.3deg);
+  padding: 0;
+}
+
+.collapse-icon:hover {
+  transform: rotate(0deg) scale(1.1);
+  background: transparent;
+  opacity: 0.8;
+}
+
+#modelSelectToggle {
+  background: transparent;
+  border: none;
+}
+
+.form-label {
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  font-weight: 600;
+  transform: rotate(-0.2deg);
+}
+
+/* Dropdown styling - hidden outline, faded text */
+.essay-type-group .form-control,
+.analysis-mode-group .form-control {
+  font-family: 'Dancing Script', 'Playfair Display', cursive;
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  font-weight: 400;
+  font-style: italic;
+  border: none !important;
+  background: transparent !important;
+  background-image: none !important;
+  color: var(--color-text-secondary);
+  opacity: 0.6;
+  padding: var(--space-8) var(--space-12);
+  padding-right: var(--space-12) !important;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-shadow: none !important;
+  transform: rotate(-0.1deg);
+}
+
+.essay-type-group .form-control:hover,
+.analysis-mode-group .form-control:hover {
+  opacity: 0.8;
+  color: var(--color-text);
+}
+
+.essay-type-group .form-control:focus,
+.analysis-mode-group .form-control:focus {
+  outline: none !important;
+  border: none !important;
+  opacity: 1;
+  color: var(--color-text);
+  box-shadow: none !important;
+}
+
+.essay-type-group .form-control option,
+.analysis-mode-group .form-control option {
+  font-family: 'Dancing Script', 'Playfair Display', cursive;
+  font-style: italic;
+  color: var(--color-text);
+  background: var(--color-surface);
+  opacity: 1;
+  padding: var(--space-8);
+}
+
+.word-counter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-12) 0;
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+  color: var(--color-text-secondary);
+  border-top: 2px solid var(--color-border);
+  margin-top: var(--space-20);
+  font-weight: 600;
+  transform: rotate(0.1deg);
+}
+
+.word-counter span {
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+}
+
+.backup-controls {
+  margin-top: var(--space-32) !important;
+  padding: var(--space-24) !important;
+  border-radius: var(--radius-lg) !important;
+  transform: rotate(0.4deg);
+  position: relative;
+  z-index: 1;
+}
+
+.backup-controls h4 {
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem) !important;
+  transform: rotate(-0.3deg);
+  font-weight: 700;
+  margin-bottom: var(--space-16) !important;
+}
+
+.backup-controls p {
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem) !important;
+  transform: rotate(0.2deg);
+}
+
+.backup-controls .btn {
+  transform: rotate(-0.3deg);
+  transition: transform var(--duration-normal) var(--ease-standard);
+}
+
+.backup-controls .btn:hover {
+  transform: rotate(0deg) translateY(-2px);
+}
+
+.feedback-section {
+  background: var(--color-bg-1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-24);
+  margin-bottom: var(--space-24);
+  border: 2px solid rgba(var(--color-teal-500-rgb), 0.15);
+  position: relative;
+  transform: rotate(0.3deg);
+  box-shadow: 8px 8px 0 rgba(var(--color-primary-rgb), 0.08);
+  transition: transform var(--duration-normal) var(--ease-standard);
+}
+
+.feedback-section:nth-child(odd) { 
+  background: var(--color-bg-1); 
+  transform: rotate(-0.4deg);
+  margin-left: -10px;
+}
+.feedback-section:nth-child(even) { 
+  background: var(--color-bg-2); 
+  transform: rotate(0.5deg);
+  margin-right: -10px;
+  z-index: 1;
+}
+.feedback-section:nth-child(3n) { 
+  background: var(--color-bg-3); 
+  transform: rotate(-0.2deg);
+  margin-left: 15px;
+}
+.feedback-section:nth-child(4n) { 
+  background: var(--color-bg-4); 
+  transform: rotate(0.6deg);
+  margin-right: -15px;
+  z-index: 1;
+}
+.feedback-section:nth-child(5n) { 
+  background: var(--color-bg-5); 
+  transform: rotate(-0.3deg);
+}
+
+.feedback-section:hover {
+  transform: rotate(0deg) translateY(-4px);
+  box-shadow: 12px 12px 0 rgba(var(--color-primary-rgb), 0.12);
+}
+
+.feedback-section h3 {
+  font-family: 'OpenDyslexic', sans-serif;
+  margin-bottom: var(--space-20);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: bold;
+  line-height: 1.2;
+  transform: rotate(-0.2deg);
+  letter-spacing: -0.01em;
+}
+
+.feedback-section h3 .heading-word {
+  opacity: 0.15;
+  transition: opacity 0.3s ease;
+  display: inline-block;
+}
+
+.feedback-section h3:hover .heading-word {
+  opacity: 1;
+  animation: fadeInWord 0.4s ease forwards;
+}
+
+.feedback-section h3:not(:hover) .heading-word {
+  transition: opacity 1s ease;
+}
+
+.feedback-section p {
+  margin-bottom: var(--space-12);
+  line-height: 1.6;
+}
+
+.feedback-section ul {
+  margin: var(--space-12) 0;
+  padding-left: var(--space-20);
+}
+
+.feedback-section li {
+  margin-bottom: var(--space-8);
+  line-height: 1.5;
+}
+
+/* Interactive feedback points */
+.feedback-point {
+  margin-bottom: var(--space-4); /* Reduced spacing when collapsed */
+  border-radius: var(--radius-base);
+  border: 1px solid rgba(var(--color-border-rgb), 0.5);
+  overflow: hidden;
+  transition: all var(--duration-normal) var(--ease-standard);
+  background: rgba(var(--color-surface-rgb), 0.3);
+}
+
+.feedback-point:hover,
+.feedback-point.show-expanded,
+.feedback-section.show-all .feedback-point {
+  margin-bottom: var(--space-12); /* Increased spacing when expanded */
+}
+
+.feedback-point.completed {
+  background: rgba(var(--color-success-rgb), 0.1);
+  border-color: rgba(var(--color-success-rgb), 0.3);
+}
+
+.feedback-point-content {
+  display: flex;
+  align-items: flex-start;
+  padding: var(--space-8) var(--space-12); /* Reduced vertical padding when collapsed */
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-standard);
+  line-height: 1.6;
+}
+
+.feedback-point:hover .feedback-point-content,
+.feedback-point.show-expanded .feedback-point-content,
+.feedback-section.show-all .feedback-point .feedback-point-content {
+  padding: var(--space-12); /* Increased padding when expanded */
+}
+
+.feedback-point-content:hover {
+  background: rgba(var(--color-primary-rgb), 0.05);
+}
+
+.feedback-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+  margin-right: var(--space-12);
+  position: relative;
+  transition: all var(--duration-fast) var(--ease-standard);
+  flex-shrink: 0;
+  margin-top: 2px; /* Align with first line of text */
+}
+
+.feedback-checkbox.checked {
+  background: var(--color-success);
+  border-color: var(--color-success);
+}
+
+.feedback-checkbox.checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.feedback-text {
+  flex-grow: 1;
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.feedback-preview {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.feedback-full {
+  font-weight: 500;
+  color: var(--color-text);
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all var(--duration-normal) var(--ease-standard);
+  display: inline;
+}
+
+.feedback-point:hover .feedback-full,
+.feedback-point.show-expanded .feedback-full,
+.feedback-section.show-all .feedback-point .feedback-full {
+  opacity: 0.85;
+  max-height: 1000px;
+}
+
+.feedback-point.completed .feedback-text {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+.feedback-heading {
+  margin-bottom: var(--space-8);
+  border-radius: var(--radius-base);
+  background: rgba(var(--color-primary-rgb), 0.05);
+  border-left: 3px solid var(--color-primary);
+}
+
+.feedback-heading .feedback-point-content {
+  padding: var(--space-8) var(--space-12);
+  cursor: default;
+}
+
+.feedback-heading .heading-text {
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.feedback-section {
+  background: var(--color-bg-1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-24);
+  margin-bottom: var(--space-24);
+  border: 2px solid rgba(var(--color-teal-500-rgb), 0.15);
+  position: relative;
+  transform: rotate(0.3deg);
+  box-shadow: 8px 8px 0 rgba(var(--color-primary-rgb), 0.08);
+  transition: transform var(--duration-normal) var(--ease-standard);
+}
+
+.feedback-section-header {
+  position: relative;
+  margin-bottom: var(--space-20);
+}
+
+.show-all-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgba(var(--color-primary-rgb), 0.1);
+  border: 1px solid rgba(var(--color-primary-rgb), 0.3);
+  border-radius: var(--radius-sm);
+  color: var(--color-primary);
+  font-size: var(--font-size-xs);
+  padding: var(--space-4) var(--space-8);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-standard);
+  font-weight: 500;
+}
+
+.show-all-btn:hover {
+  background: rgba(var(--color-primary-rgb), 0.2);
+  transform: translateY(-1px);
+}
+
+.show-all-btn.active {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* Curly arrows between feedback sections */
+.feedback-section:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 300px;
+  background-image: url('arrow.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 10;
+  opacity: 0.7;
+  animation: bounce 2s infinite;
+}
+
+.feedback-section:not(:last-child)::before {
+  display: none;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+.feedback-placeholder {
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-style: italic;
+  padding: var(--space-32);
+  background: transparent;
+  border-radius: var(--radius-lg);
+  border: none;
+  transform: rotate(0.5deg);
+  position: relative;
+  opacity: 0.1;
+  transition: opacity var(--duration-normal) var(--ease-standard);
+}
+
+.feedback-placeholder:hover {
+  opacity: 1;
+}
+
+.feedback-placeholder p {
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  line-height: 1.6;
+  margin-bottom: var(--space-16);
+}
+
+.feedback-placeholder p:first-child {
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-weight: 600;
+  color: var(--color-text);
+  transform: rotate(-0.3deg);
+  font-style: normal;
+}
+
+.feedback-placeholder strong {
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-weight: 700;
+  color: var(--color-primary);
+  transform: rotate(0.2deg);
+  display: block;
+  margin-bottom: var(--space-8);
+}
+
+.feedback-placeholder ul {
+  text-align: left;
+  max-width: 500px;
+  margin: var(--space-16) auto;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  transform: rotate(-0.2deg);
+}
+
+.feedback-placeholder li {
+  margin-bottom: var(--space-12);
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-24);
+  color: var(--color-text-secondary);
+}
+
+.loading::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-border);
+  border-top: 2px solid var(--color-primary);
+  border-radius: 50%;
+  margin-left: var(--space-12);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.highlight-text {
+  background: rgba(var(--color-warning-rgb), 0.2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+}
+
+.metric-badge {
+  display: inline-block;
+  background: var(--color-primary);
+  color: var(--color-btn-primary-text);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  margin: 0 var(--space-4) var(--space-8) 0;
+}
+
+.next-evaluation {
+  background: var(--color-bg-8);
+  padding: var(--space-16);
+  border-radius: var(--radius-base);
+  border-left: 4px solid var(--color-primary);
+  margin-top: var(--space-16);
+}
+
+.next-evaluation strong {
+  color: var(--color-primary);
+}
+
+.api-status {
+  margin-top: var(--space-8);
+  padding: var(--space-8);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  display: none;
+}
+
+.api-status.success {
+  background: rgba(var(--color-success-rgb), 0.1);
+  color: var(--color-success);
+  border: 1px solid rgba(var(--color-success-rgb), 0.2);
+  display: block;
+}
+
+.api-status.error {
+  background: rgba(var(--color-error-rgb), 0.1);
+  color: var(--color-error);
+  border: 1px solid rgba(var(--color-error-rgb), 0.2);
+  display: block;
+}
+
+.analysis-mode-group {
+  flex: 1;
+  display: none;
+}
+
+.error-message {
+  background: rgba(var(--color-error-rgb), 0.1);
+  color: var(--color-error);
+  padding: var(--space-16);
+  border-radius: var(--radius-base);
+  border: 1px solid rgba(var(--color-error-rgb), 0.2);
+  margin-bottom: var(--space-16);
+}
+
+.type-mismatch-alert {
+  margin-top: var(--space-8);
+  background: rgba(var(--color-warning-rgb), 0.1);
+  border: 1px solid rgba(var(--color-warning-rgb), 0.2);
+  border-radius: var(--radius-base);
+  padding: var(--space-12);
+  animation: slideDown 0.3s ease-out;
+}
+
+.alert-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  flex-wrap: wrap;
+}
+
+.alert-text {
+  flex: 1;
+  font-size: var(--font-size-sm);
+  color: var(--color-warning);
+  font-weight: var(--font-weight-medium);
+}
+
+.confidence-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-8);
+}
+
+.confidence-bar {
+  width: 60px;
+  height: 4px;
+  background: var(--color-secondary);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.confidence-fill {
+  height: 100%;
+  background: var(--color-primary);
+  transition: width var(--duration-normal) var(--ease-standard);
+}
+
+.type-evolution {
+  background: var(--color-bg-6);
+  padding: var(--space-12);
+  border-radius: var(--radius-base);
+  margin-top: var(--space-12);
+  border-left: 3px solid var(--color-warning);
+}
+
+.type-evolution h4 {
+  font-size: var(--font-size-sm);
+  color: var(--color-warning);
+  margin-bottom: var(--space-8);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.model-recommendation {
+  margin-top: var(--space-8);
+  padding: var(--space-12);
+  background: var(--color-bg-2);
+  border-radius: var(--radius-base);
+  border-left: 3px solid var(--color-primary);
+  font-size: var(--font-size-sm);
+}
+
+.model-recommendation.show {
+  display: block;
+  animation: slideDown 0.3s ease-out;
+}
+
+.model-recommendation .recommended-model {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+}
+
+.model-recommendation .cost-info {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  margin-top: var(--space-4);
+}
+
+.model-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  margin-top: var(--space-8);
+}
+
+.model-info-item {
+  padding: var(--space-8);
+  background: var(--color-bg-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+}
+
+.model-info-item strong {
+  color: var(--color-text);
+  display: block;
+  margin-bottom: var(--space-2);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@font-face {
+  font-family: 'FKGroteskNeue';
+  src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2')
+    format('woff2');
+}
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('https://cdn.jsdelivr.net/gh/antijingoist/opendyslexic@master/OpenDyslexic-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('https://cdn.jsdelivr.net/gh/antijingoist/opendyslexic@master/OpenDyslexic-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Using Google Fonts for headings and cursive dropdowns */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;700&family=Inter:wght@400;500;600;700&display=swap');
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- SVG Doodle Placeholders - Replace .doodle-placeholder divs with your Canva SVGs -->
+        <!-- Example: <svg>...</svg> or <img src="doodle.svg"> -->
+        <div class="doodle-container doodle-center-left">
+            <img src="quill.png" alt="Quill" class="doodle-image">
+        </div>
+        <div class="doodle-container doodle-center-right">
+            <img src="circular-right.png" alt="Circular Right" class="doodle-image-half">
+        </div>
+        
+        <header class="app-header">
+            <h1>
+                <span class="heading-word">Writing</span> <span class="heading-word">Mentor</span>
+            </h1>
+            <p>Develop your essays with sharp analysis and guided discovery</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Input Section -->
+            <div class="input-section">
+                <h2 class="section-title">
+                    <span class="heading-word">The</span> <span class="heading-word">Studio</span>
+                </h2>
+                
+                <div class="form-group" id="apiKeyGroup">
+                    <button type="button" class="collapse-icon" id="apiKeyToggle" style="display: none;" title="Show API Key">🔑</button>
+                    <div class="api-key-minimal">
+                        <span class="api-key-icon">🔑</span>
+                        <input type="password" id="apiKey" class="api-key-input-minimal" placeholder="enter a perplexity API key" autocomplete="off">
+                        <span class="blinking-underscore" id="apiKeyUnderscore">_</span>
+                    </div>
+                    <div class="api-status" id="apiStatus"></div>
+                </div>
+
+                <div class="form-group collapsed" id="modelSelectGroup">
+                    <button type="button" class="collapse-icon" id="modelSelectToggle" title="Show AI Model Selection">🧠</button>
+                    <label class="form-label" for="modelSelect">AI Model Selection</label>
+                    <select id="modelSelect" class="form-control">
+                        <option value="auto">🎯 Auto-Recommend (Based on Essay Type &amp; Analysis)</option>
+                        <option value="sonar">⚡ Sonar - Fast, straightforward answers (Low cost)</option>
+                        <option value="sonar-pro">🌟 Sonar Pro - Comprehensive analysis (Medium cost)</option>
+                        <option value="sonar-reasoning">🧠 Sonar Reasoning - Complex multi-step thinking (High cost)</option>
+                        <option value="sonar-reasoning-pro">🎓 Sonar Reasoning Pro - Expert analysis (Highest cost)</option>
+                        <option value="r1-1776">🔄 R1-1776 - Alternative reasoning approach (High cost)</option>
+                    </select>
+                    <div id="modelRecommendation" class="model-recommendation"></div>
+                </div>
+
+                <div class="controls-row">
+                    <div class="essay-type-group form-group">
+                        <label class="form-label" for="essayType">Essay Type</label>
+                        <select id="essayType" class="form-control">
+                            <option value="tech">Tech</option>
+                            <option value="reflective">Reflective</option>
+                            <option value="analytical">Analytical</option>
+                            <option value="personal" selected>Personal</option>
+                            <option value="product">Product</option>
+                            <option value="other">Other</option>
+                        <option value="academic">Academic</option>
+                        <option value="creative">Creative</option>
+                        </select>
+                        <div id="typeMismatchAlert" class="type-mismatch-alert" style="display: none;">
+                            <div class="alert-content">
+                                <span class="alert-text"></span>
+                                <button id="acceptSuggestedType" class="btn btn--sm btn--primary">Accept Suggestion</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="analysis-mode-group form-group">
+                        <label class="form-label" for="analysisMode">Analysis Mode</label>
+                        <select id="analysisMode" class="form-control">
+                            <option value="quick">Quick Analysis</option>
+                            <option value="deep">Deep Analysis</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="writingWorkspace">Your Essay Draft</label>
+                    <div class="writing-workspace-wrapper">
+                    <textarea 
+                        id="writingWorkspace" 
+                        class="form-control writing-workspace" 
+                        placeholder="Start writing your essay here. The coach will analyze your work and provide feedback to help you discover deeper insights and refine your ideas..."
+                    ></textarea>
+                    </div>
+                    <div class="word-counter">
+                        <span id="wordCount">0 words | 0 characters</span>
+                        <span id="readingTime">0 min read</span>
+                    </div>
+                    <div class="backup-status" id="backupStatus" style="font-size: var(--font-size-sm); color: var(--color-text-secondary); padding: var(--space-8) 0; border-top: 1px solid var(--color-border); margin-top: var(--space-8);">
+                        <span style="color: var(--color-warning);">⏳ Auto-save will start when you begin typing...</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="customPrompt">Custom Coaching Focus (Optional)</label>
+                    <div class="custom-prompt-wrapper">
+                    <textarea 
+                        id="customPrompt" 
+                        class="form-control custom-prompt" 
+                        placeholder="e.g., 'Help me strengthen my technical arguments' or 'Focus on finding my authentic voice'"
+                    ></textarea>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="coachMe" class="btn btn--fancy"><span class="moon-emoji">🌘</span>   Challenge me</button>
+                </div>
+
+                <div class="backup-controls" style="margin-top: var(--space-32); padding: var(--space-16);">
+                    <h4 style="margin-bottom: var(--space-12); font-size: var(--font-size-lg); color: var(--color-text);">💾 Auto-Backup System</h4>
+                    <p style="margin-bottom: var(--space-12); font-size: var(--font-size-sm); color: var(--color-text-secondary);">
+                        Your essay is automatically saved every minute to browser storage. Keeps the latest 5 versions accessible without downloads or file clutter.
+                    </p>
+                    <div style="display: flex; gap: var(--space-8); flex-wrap: wrap;">
+                        <button id="manualBackup" class="btn btn--sm btn--outline">💾 Save Now</button>
+                        <button id="viewBackups" class="btn btn--sm btn--outline">📋 View Backups</button>
+                        <button id="feedbackHistory" class="btn btn--sm btn--outline">📚 Feedback History</button>
+                        <button id="stopBackup" class="btn btn--sm btn--outline" style="display: none;">⏸️ Pause Auto-Save</button>
+                        <button id="startBackup" class="btn btn--sm btn--outline">▶️ Resume Auto-Save</button>
+                    </div>
+                    <div id="backupList" style="margin-top: var(--space-12); display: none;">
+                        <h5 style="font-size: var(--font-size-sm); margin-bottom: var(--space-8);">Recent Backups:</h5>
+                        <div id="backupVersionsList"></div>
+                    </div>
+                    <div id="feedbackHistoryList" style="margin-top: var(--space-12); display: none;">
+                        <h5 style="font-size: var(--font-size-sm); margin-bottom: var(--space-8);">Recent Feedback Sessions:</h5>
+                        <div id="feedbackHistoryVersionsList"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Output Section -->
+            <div class="output-section">
+                <h2 class="section-title">
+                    <span class="heading-word">      </span> <span class="heading-word">Feedback</span>
+                </h2>
+                <div id="feedbackContainer">
+                    <div class="feedback-placeholder">
+                        <p>🤖 Excited to write with you!</p>
+                        <p><strong>New Features:</strong></p>
+                        <ul style="text-align: left; max-width: 400px; margin: 0 auto;">
+                            <li>✨ Intelligent recommendations to extract more nuance</li>
+                            <li>🎯 Assesses your information density</li>
+                            <li>🎓 Guides you with narrative structures</li>
+                        </ul>
+                        <p>Don't wait for perfection—start exploring.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Essay type configurations and detection patterns
+        const essayTypes = {
+            tech: 'Technical clarity, practical insights, implications',
+            reflective: 'Personal growth, experience analysis, meaning-making', 
+            analytical: 'Breaking down complex topics, examining assumptions',
+            personal: 'Authentic voice, vulnerability, specific experiences',
+            product: 'First principles thinking, user-centered design, market insights',
+            academic: 'Research-based arguments, scholarly discourse, citations',
+            creative: 'Originality, artistic expression, narrative innovation',
+            other: 'Clear expression, logical flow, reader engagement'
+        };
+
+        // Essay type detection data
+        const typeDetectionData = {
+            tech: {
+                vocabulary: ['implementation', 'system', 'architecture', 'users', 'platform', 'algorithm', 'data', 'performance', 'scalability', 'framework', 'API', 'database', 'optimization'],
+                patterns: ['how it works', 'technical implications', 'user behavior', 'system design', 'implementation challenges', 'performance metrics'],
+                voice: 'objective, systematic, problem-solving oriented',
+                evidence: 'technical examples, usage statistics, performance metrics'
+            },
+            reflective: {
+                vocabulary: ['learned', 'realized', 'journey', 'growth', 'experience', 'understanding', 'insight', 'change', 'perspective', 'transformation', 'discovery'],
+                patterns: ['before and after', 'learning moments', 'personal transformation', 'meaning-making', 'realization that', 'looking back'],
+                voice: 'personal, introspective, narrative-driven',
+                evidence: 'personal anecdotes, internal observations, emotional responses'
+            },
+            analytical: {
+                vocabulary: ['analysis', 'evidence', 'argument', 'conclusion', 'hypothesis', 'framework', 'model', 'theory', 'research', 'data', 'study'],
+                patterns: ['thesis and support', 'counter-arguments', 'systematic breakdown', 'logical progression', 'evidence suggests', 'research shows'],
+                voice: 'objective, critical, methodical',
+                evidence: 'research, data, logical reasoning, expert sources'
+            },
+            personal: {
+                vocabulary: ['I felt', 'my family', 'growing up', 'vulnerable', 'shame', 'joy', 'fear', 'love', 'childhood', 'relationship', 'mother', 'father'],
+                patterns: ['intimate moments', 'emotional truth', 'specific life details', 'relationship dynamics', 'family stories', 'childhood memories'],
+                voice: 'vulnerable, authentic, specific, emotional',
+                evidence: 'personal stories, emotional insights, specific memories'
+            },
+            product: {
+                vocabulary: ['users', 'customers', 'market', 'design', 'product', 'feature', 'solution', 'problem', 'value', 'experience', 'iteration', 'feedback', 'innovation', 'principles'],
+                patterns: ['first principles', 'user needs', 'market validation', 'product strategy', 'design thinking', 'customer feedback', 'value proposition'],
+                voice: 'strategic, user-focused, systematic, evidence-based',
+                evidence: 'user research, market data, design principles, startup insights'
+            },
+            academic: {
+                vocabulary: ['research', 'study', 'analysis', 'theory', 'methodology', 'hypothesis', 'literature', 'findings', 'conclusion', 'significance', 'implications'],
+                patterns: ['literature review', 'methodology section', 'data analysis', 'scholarly arguments', 'peer review', 'citation patterns'],
+                voice: 'formal, objective, scholarly, precise',
+                evidence: 'peer-reviewed sources, statistical data, scholarly consensus'
+            },
+            creative: {
+                vocabulary: ['imagine', 'story', 'character', 'scene', 'narrative', 'metaphor', 'imagery', 'voice', 'style', 'artistic', 'original'],
+                patterns: ['narrative structure', 'character development', 'sensory details', 'creative techniques', 'artistic choices'],
+                voice: 'imaginative, expressive, artistic, original',
+                evidence: 'creative examples, artistic techniques, innovative approaches'
+            }
+        };
+
+        // Hybrid type combinations
+        const hybridTypes = {
+            'tech-reflective': 'Technical learning journey',
+            'analytical-personal': 'Personal framework development',
+            'reflective-analytical': 'Systematic self-examination',
+            'personal-tech': 'Technology\'s personal impact',
+            'product-tech': 'Technical product strategy',
+            'product-analytical': 'Data-driven product thinking'
+        };
+
+        // Store current type analysis state
+        let lastTypeAnalysis = {
+            detectedType: null,
+            confidence: 0,
+            isHybrid: false,
+            evolution: []
+        };
+
+        // API Configuration with updated models
+        const PERPLEXITY_CONFIG = {
+            baseUrl: 'https://api.perplexity.ai/chat/completions',
+            models: {
+                'sonar': {
+                    name: 'Sonar',
+                    description: 'Fast, straightforward answers',
+                    bestFor: 'Quick feedback, basic improvements',
+                    costLevel: 'Low',
+                    recommendedFor: ['quick_analysis', 'basic_coaching']
+                },
+                'sonar-pro': {
+                    name: 'Sonar Pro',
+                    description: 'Advanced search with comprehensive answers',
+                    bestFor: 'Balanced coaching with good depth',
+                    costLevel: 'Medium',
+                    recommendedFor: ['standard_coaching', 'most_essay_types']
+                },
+                'sonar-reasoning': {
+                    name: 'Sonar Reasoning',
+                    description: 'Complex multi-step analysis',
+                    bestFor: 'Deep essay development, complex thinking',
+                    costLevel: 'High',
+                    recommendedFor: ['deep_analysis', 'complex_essays']
+                },
+                'sonar-reasoning-pro': {
+                    name: 'Sonar Reasoning Pro',
+                    description: 'Most advanced reasoning capabilities',
+                    bestFor: 'Sophisticated coaching, expert analysis',
+                    costLevel: 'Highest',
+                    recommendedFor: ['expert_coaching', 'complex_analytical_work']
+                },
+                'r1-1776': {
+                    name: 'R1-1776',
+                    description: 'Alternative reasoning model',
+                    bestFor: 'Different perspective on analysis',
+                    costLevel: 'High',
+                    recommendedFor: ['alternative_approach', 'creative_coaching']
+                }
+            },
+            defaultModel: 'sonar'
+        };
+
+        // Model recommendation matrix - Updated to use Sonar fast as default
+        const MODEL_RECOMMENDATIONS = {
+            tech: {
+                quick: 'sonar',
+                standard: 'sonar',
+                deep: 'sonar',
+                expert: 'sonar'
+            },
+            reflective: {
+                quick: 'sonar',
+                standard: 'sonar',
+                deep: 'sonar',
+                expert: 'sonar'
+            },
+            analytical: {
+                quick: 'sonar',
+                standard: 'sonar',
+                deep: 'sonar',
+                expert: 'sonar'
+            },
+            personal: {
+                quick: 'sonar',
+                standard: 'sonar',
+                deep: 'sonar',
+                expert: 'sonar'
+            },
+            other: {
+                quick: 'sonar',
+                standard: 'sonar',
+                deep: 'sonar',
+                expert: 'sonar'
+            },
+            academic: {
+                quick: 'sonar',
+                standard: 'sonar',
+                deep: 'sonar',
+                expert: 'sonar'
+            },
+            creative: {
+                quick: 'sonar',
+                standard: 'sonar',
+                deep: 'sonar',
+                expert: 'sonar'
+            }
+        };
+
+        // Store API key in memory (session-only due to sandbox limitations)
+        let currentApiKey = null;
+        let selectedModel = 'auto';
+        let currentRecommendedModel = 'sonar';
+
+        // DOM elements
+        const apiKeyInput = document.getElementById('apiKey');
+        const apiStatus = document.getElementById('apiStatus');
+        const writingWorkspace = document.getElementById('writingWorkspace');
+        const essayType = document.getElementById('essayType');
+        const analysisMode = document.getElementById('analysisMode');
+        const customPrompt = document.getElementById('customPrompt');
+        const coachMeBtn = document.getElementById('coachMe');
+        const feedbackContainer = document.getElementById('feedbackContainer');
+        const wordCount = document.getElementById('wordCount');
+        const readingTime = document.getElementById('readingTime');
+        const typeMismatchAlert = document.getElementById('typeMismatchAlert');
+        const acceptSuggestedTypeBtn = document.getElementById('acceptSuggestedType');
+        const modelSelect = document.getElementById('modelSelect');
+        const modelRecommendation = document.getElementById('modelRecommendation');
+        const manualBackupBtn = document.getElementById('manualBackup');
+        const viewBackupsBtn = document.getElementById('viewBackups');
+        const feedbackHistoryBtn = document.getElementById('feedbackHistory');
+        const stopBackupBtn = document.getElementById('stopBackup');
+        const startBackupBtn = document.getElementById('startBackup');
+        const backupList = document.getElementById('backupList');
+        const backupVersionsList = document.getElementById('backupVersionsList');
+        const feedbackHistoryList = document.getElementById('feedbackHistoryList');
+        const feedbackHistoryVersionsList = document.getElementById('feedbackHistoryVersionsList');
+
+        // Store suggested type for acceptance
+        let suggestedType = null;
+
+        // Backup system variables
+        let backupTimer = null;
+        let backupVersions = [];
+        const MAX_BACKUP_VERSIONS = 5;
+        const BACKUP_INTERVAL = 60000; // 1 minute in milliseconds
+
+        // Feedback storage variables
+        let feedbackHistory = [];
+        const MAX_FEEDBACK_VERSIONS = 5;
+
+        // Word count and reading time calculation
+        function updateWordCount() {
+            const text = writingWorkspace.value;
+            const words = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
+            const characters = text.length;
+            const readingTimeMinutes = Math.max(1, Math.ceil(words / 200));
+            
+            wordCount.textContent = `${words} words | ${characters} characters`;
+            readingTime.textContent = `${readingTimeMinutes} min read`;
+        }
+
+        // Backup system functions
+        function createBackup() {
+            const text = writingWorkspace.value.trim();
+            if (!text) return; // Don't backup empty content
+            
+            const timestamp = new Date().toISOString();
+            const backup = {
+                timestamp: timestamp,
+                content: text,
+                wordCount: text.split(/\s+/).length,
+                filename: `essay_backup_${timestamp.replace(/[:.]/g, '-')}.txt`
+            };
+            
+            // Add to backup versions array
+            backupVersions.unshift(backup);
+            
+            // Keep only the latest 5 versions
+            if (backupVersions.length > MAX_BACKUP_VERSIONS) {
+                backupVersions = backupVersions.slice(0, MAX_BACKUP_VERSIONS);
+            }
+            
+            // Save backups to browser storage (no downloads)
+            saveBackupsToStorage();
+            
+            // Update backup status
+            updateBackupStatus();
+            
+            // Auto-refresh backup list if it's currently visible
+            refreshBackupList();
+            
+            console.log(`Backup created and saved to browser storage`);
+        }
+        
+        function saveBackupsToStorage() {
+            // Save backups to browser localStorage (persistent across sessions)
+            try {
+                localStorage.setItem('writingCoach_backups', JSON.stringify(backupVersions));
+                console.log('Backups saved to browser storage');
+            } catch (error) {
+                console.error('Failed to save backups to storage:', error);
+            }
+        }
+        
+        function loadBackupsFromStorage() {
+            // Load backups from browser localStorage
+            try {
+                const stored = localStorage.getItem('writingCoach_backups');
+                if (stored) {
+                    backupVersions = JSON.parse(stored);
+                    console.log('Backups loaded from browser storage');
+                }
+            } catch (error) {
+                console.error('Failed to load backups from storage:', error);
+            }
+        }
+        
+        function downloadBackupFile(backup) {
+            // This function is kept for manual downloads from the backup list
+            const blob = new Blob([backup.content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = backup.filename;
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        function startBackupTimer() {
+            if (backupTimer) {
+                clearInterval(backupTimer);
+            }
+            
+            backupTimer = setInterval(() => {
+                createBackup();
+            }, BACKUP_INTERVAL);
+            
+            console.log('Backup timer started - saving every 1 minute');
+        }
+        
+        function stopBackupTimer() {
+            if (backupTimer) {
+                clearInterval(backupTimer);
+                backupTimer = null;
+                console.log('Backup timer stopped');
+            }
+        }
+        
+        function updateBackupStatus() {
+            const statusElement = document.getElementById('backupStatus');
+            if (statusElement) {
+                const lastBackup = backupVersions[0];
+                if (lastBackup) {
+                    const timeAgo = new Date() - new Date(lastBackup.timestamp);
+                    const minutesAgo = Math.floor(timeAgo / 60000);
+                    statusElement.innerHTML = `
+                        <span style="color: var(--color-success);">✓ Auto-saving active</span> | 
+                        Last backup: ${minutesAgo}m ago | 
+                        Stored: ${backupVersions.length}/${MAX_BACKUP_VERSIONS} versions in browser
+                    `;
+                } else {
+                    statusElement.innerHTML = '<span style="color: var(--color-warning);">⏳ Starting auto-save...</span>';
+                }
+            }
+        }
+        
+        function restoreFromBackup(backupIndex) {
+            if (backupIndex >= 0 && backupIndex < backupVersions.length) {
+                const backup = backupVersions[backupIndex];
+                writingWorkspace.value = backup.content;
+                updateWordCount();
+                
+                // Show restoration notification
+                const notification = document.createElement('div');
+                notification.className = 'type-evolution';
+                notification.innerHTML = `
+                    <h4>📄 Backup Restored</h4>
+                    <p>Restored version from ${new Date(backup.timestamp).toLocaleString()} (${backup.wordCount} words)</p>
+                `;
+                
+                const firstSection = document.querySelector('.feedback-section');
+                if (firstSection) {
+                    firstSection.insertAdjacentElement('afterend', notification);
+                    setTimeout(() => notification.remove(), 5000);
+                }
+            }
+        }
+        
+        function refreshBackupList() {
+            // Only refresh the content if the backup list is currently visible
+            if (backupList.style.display === 'block') {
+                // Store current scroll position
+                // const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (backupVersions.length === 0) {
+                    backupVersionsList.innerHTML = '<p style="color: var(--color-text-secondary); font-style: italic;">No backups available yet. Start writing to create your first backup!</p>';
+                } else {
+                    let html = '';
+                    backupVersions.forEach((backup, index) => {
+                        const date = new Date(backup.timestamp);
+                        const timeAgo = Math.floor((new Date() - date) / 60000);
+                        html += `
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: var(--space-8); background: var(--color-surface); border-radius: var(--radius-sm); margin-bottom: var(--space-4); border: 1px solid var(--color-border);">
+                                <div>
+                                    <strong>${backup.wordCount} words</strong> - ${date.toLocaleString()}
+                                    <br><small style="color: var(--color-text-secondary);">${timeAgo} minutes ago</small>
+                                </div>
+                                <div style="display: flex; gap: var(--space-4);">
+                                    <button onclick="restoreFromBackup(${index})" class="btn btn--sm btn--outline">Restore</button>
+                                    <button onclick="downloadBackupFile(backupVersions[${index}])" class="btn btn--sm btn--outline">Download</button>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    backupVersionsList.innerHTML = html;
+                }
+                
+                // Restore scroll position after update
+                // window.scrollTo(0, currentScrollTop);
+            }
+        }
+        
+        function showBackupList() {
+            if (backupVersions.length === 0) {
+                backupVersionsList.innerHTML = '<p style="color: var(--color-text-secondary); font-style: italic;">No backups available yet. Start writing to create your first backup!</p>';
+            } else {
+                let html = '';
+                backupVersions.forEach((backup, index) => {
+                    const date = new Date(backup.timestamp);
+                    const timeAgo = Math.floor((new Date() - date) / 60000);
+                    html += `
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: var(--space-8); background: var(--color-surface); border-radius: var(--radius-sm); margin-bottom: var(--space-4); border: 1px solid var(--color-border);">
+                            <div>
+                                <strong>${backup.wordCount} words</strong> - ${date.toLocaleString()}
+                                <br><small style="color: var(--color-text-secondary);">${timeAgo} minutes ago</small>
+                            </div>
+                            <div style="display: flex; gap: var(--space-4);">
+                                <button onclick="restoreFromBackup(${index})" class="btn btn--sm btn--outline">Restore</button>
+                                <button onclick="downloadBackupFile(backupVersions[${index}])" class="btn btn--sm btn--outline">Download</button>
+                            </div>
+                        </div>
+                    `;
+                });
+                backupVersionsList.innerHTML = html;
+            }
+            backupList.style.display = backupList.style.display === 'none' ? 'block' : 'none';
+        }
+        
+        function toggleBackupControls() {
+            const isActive = backupTimer !== null;
+            stopBackupBtn.style.display = isActive ? 'inline-flex' : 'none';
+            startBackupBtn.style.display = isActive ? 'none' : 'inline-flex';
+        }
+
+        // Feedback storage functions
+        function saveFeedbackToStorage(feedbackData) {
+            const feedbackEntry = {
+                timestamp: new Date().toISOString(),
+                essayType: essayType.value,
+                analysisMode: analysisMode.value,
+                wordCount: writingWorkspace.value.trim().split(/\s+/).length,
+                feedback: feedbackData
+            };
+            
+            feedbackHistory.unshift(feedbackEntry);
+            
+            // Keep only the latest 20 feedback versions
+            if (feedbackHistory.length > MAX_FEEDBACK_VERSIONS) {
+                feedbackHistory = feedbackHistory.slice(0, MAX_FEEDBACK_VERSIONS);
+            }
+            
+            // Save to browser storage
+            try {
+                localStorage.setItem('writingCoach_feedbackHistory', JSON.stringify(feedbackHistory));
+                console.log('Feedback saved to browser storage');
+            } catch (error) {
+                console.error('Failed to save feedback to storage:', error);
+            }
+        }
+        
+        function loadFeedbackFromStorage() {
+            try {
+                const stored = localStorage.getItem('writingCoach_feedbackHistory');
+                if (stored) {
+                    feedbackHistory = JSON.parse(stored);
+                    
+                    // Trim to max allowed entries if needed (cleanup old data)
+                    if (feedbackHistory.length > MAX_FEEDBACK_VERSIONS) {
+                        feedbackHistory = feedbackHistory.slice(0, MAX_FEEDBACK_VERSIONS);
+                        // Save the trimmed version back to storage
+                        localStorage.setItem('writingCoach_feedbackHistory', JSON.stringify(feedbackHistory));
+                        console.log(`Feedback history trimmed to ${MAX_FEEDBACK_VERSIONS} entries`);
+                    }
+                    
+                    console.log('Feedback history loaded from browser storage');
+                }
+            } catch (error) {
+                console.error('Failed to load feedback from storage:', error);
+            }
+        }
+        
+        function showFeedbackHistory() {
+            if (feedbackHistory.length === 0) {
+                feedbackHistoryVersionsList.innerHTML = '<p style="color: var(--color-text-secondary); font-style: italic;">No feedback history available yet. Start analyzing your writing to build a history!</p>';
+            } else {
+                let html = '';
+                feedbackHistory.forEach((entry, index) => {
+                    const date = new Date(entry.timestamp);
+                    const timeAgo = Math.floor((new Date() - date) / 60000);
+                    html += `
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: var(--space-8); background: var(--color-surface); border-radius: var(--radius-sm); margin-bottom: var(--space-4); border: 1px solid var(--color-border);">
+                            <div>
+                                <strong>${entry.essayType.charAt(0).toUpperCase() + entry.essayType.slice(1)} Essay - ${entry.wordCount} words</strong>
+                                <br><small style="color: var(--color-text-secondary);">${date.toLocaleString()} | ${timeAgo} minutes ago</small>
+                            </div>
+                            <button onclick="downloadFeedbackMarkdown(${index})" class="btn btn--sm btn--outline">📄 Download</button>
+                        </div>
+                    `;
+                });
+                feedbackHistoryVersionsList.innerHTML = html;
+            }
+            feedbackHistoryList.style.display = feedbackHistoryList.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function downloadFeedbackMarkdown(index) {
+            if (index >= 0 && index < feedbackHistory.length) {
+                const entry = feedbackHistory[index];
+                const date = new Date(entry.timestamp);
+                
+                // Create simple markdown content
+                let markdownContent = `# Writing Coach Feedback\n\n`;
+                markdownContent += `**Date:** ${date.toLocaleDateString()} ${date.toLocaleTimeString()}\n`;
+                markdownContent += `**Essay Type:** ${entry.essayType}\n`;
+                markdownContent += `**Word Count:** ${entry.wordCount}\n\n`;
+                markdownContent += `---\n\n`;
+                
+                // Add each feedback section
+                entry.feedback.forEach(section => {
+                    markdownContent += `## ${section.title}\n\n`;
+                    markdownContent += `${section.content}\n\n`;
+                });
+                
+                // Create and download the file
+                const filename = `feedback-${entry.essayType}-${date.toISOString().slice(0, 16).replace(/:/g, '-')}.md`;
+                const blob = new Blob([markdownContent], { type: 'text/markdown' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                a.style.display = 'none';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+        }
+
+        // API Key validation and management
+        function validateApiKey(apiKey) {
+            return apiKey && apiKey.startsWith('pplx-') && apiKey.length > 20;
+        }
+
+        function updateApiStatus(isValid, message = '') {
+            const apiKeyGroup = document.getElementById('apiKeyGroup');
+            const apiKeyToggle = document.getElementById('apiKeyToggle');
+            
+            if (isValid) {
+                apiStatus.className = 'api-status success';
+                apiStatus.textContent = '✓ API key validated and ready';
+                currentApiKey = apiKeyInput.value.trim();
+                
+                // Collapse the API key field after validation
+                setTimeout(() => {
+                    apiKeyGroup.classList.add('collapsed');
+                    apiKeyToggle.style.display = 'inline-flex';
+                }, 1000);
+            } else {
+                apiStatus.className = 'api-status error';
+                apiStatus.textContent = `✗ ${message || 'Invalid API key format'}`;
+                currentApiKey = null;
+            }
+        }
+        
+        // Collapse/expand handlers
+        const apiKeyToggle = document.getElementById('apiKeyToggle');
+        const modelSelectToggle = document.getElementById('modelSelectToggle');
+        const apiKeyGroup = document.getElementById('apiKeyGroup');
+        const modelSelectGroup = document.getElementById('modelSelectGroup');
+        
+        apiKeyToggle.addEventListener('click', () => {
+            apiKeyGroup.classList.toggle('collapsed');
+            if (apiKeyGroup.classList.contains('collapsed')) {
+                apiKeyToggle.style.display = 'inline-flex';
+            } else {
+                apiKeyToggle.style.display = 'none';
+                apiKeyInput.focus();
+            }
+        });
+        
+        modelSelectToggle.addEventListener('click', () => {
+            modelSelectGroup.classList.toggle('collapsed');
+        });
+        
+        // Ensure model select toggle is visible since it starts collapsed
+        if (modelSelectGroup.classList.contains('collapsed')) {
+            modelSelectToggle.style.display = 'inline-flex';
+        }
+        
+        // Word-by-word reveal with delay on hover out
+        let headingHoverTimeout = null;
+        function setupHeadingReveal(heading) {
+            if (!heading) return;
+            
+            const words = heading.querySelectorAll('.heading-word');
+            if (words.length === 0) return;
+            
+            heading.addEventListener('mouseenter', () => {
+                if (headingHoverTimeout) {
+                    clearTimeout(headingHoverTimeout);
+                    headingHoverTimeout = null;
+                }
+                words.forEach((word, index) => {
+                    setTimeout(() => {
+                        word.style.opacity = '1';
+                    }, index * 100);
+                });
+            });
+            
+            heading.addEventListener('mouseleave', () => {
+                headingHoverTimeout = setTimeout(() => {
+                    words.forEach(word => {
+                        word.style.opacity = '0.15';
+                    });
+                }, 2000); // 2 second delay before fade out
+            });
+        }
+        
+        // Setup heading reveals for all headings
+        function initializeHeadingReveals() {
+            const headings = document.querySelectorAll('h1, .section-title, .feedback-section h3');
+            headings.forEach(heading => {
+                setupHeadingReveal(heading);
+            });
+        }
+        
+        // Wrap words in headings dynamically
+        function wrapWordsInHeading(heading) {
+            if (!heading) return;
+            if (heading.querySelector('.heading-word')) return; // Already wrapped
+            
+            const text = heading.textContent.trim();
+            const words = text.split(/\s+/);
+            heading.innerHTML = words.map(word => `<span class="heading-word">${word}</span>`).join(' ');
+        }
+
+        // Get recommended model for current selection
+        function getRecommendedModel() {
+            const currentEssayType = essayType.value;
+            const currentAnalysisMode = analysisMode.value;
+            
+            let modeKey = 'standard';
+            if (currentAnalysisMode === 'quick') modeKey = 'quick';
+            else if (currentAnalysisMode === 'deep') modeKey = 'deep';
+            
+            return MODEL_RECOMMENDATIONS[currentEssayType]?.[modeKey] || 'sonar-pro';
+        }
+        
+        // Update model recommendation display
+        function updateModelRecommendation() {
+            const recommended = getRecommendedModel();
+            const modelInfo = PERPLEXITY_CONFIG.models[recommended];
+            
+            if (selectedModel === 'auto') {
+                currentRecommendedModel = recommended;
+                modelRecommendation.innerHTML = `
+                    <div class="model-info-grid">
+                        <div class="model-info-item">
+                            <strong>📋 Recommended</strong>
+                            ${modelInfo.name}
+                        </div>
+                        <div class="model-info-item">
+                            <strong>💰 Cost Level</strong>
+                            ${modelInfo.costLevel}
+                        </div>
+                        <div class="model-info-item">
+                            <strong>🎯 Best For</strong>
+                            ${modelInfo.bestFor}
+                        </div>
+                        <div class="model-info-item">
+                            <strong>📝 Essay + Mode</strong>
+                            ${essayType.value} + ${analysisMode.value}
+                        </div>
+                    </div>
+                    <div class="cost-info">
+                        <em>Perfect for your ${essayType.value} essay with ${analysisMode.value} analysis mode</em>
+                    </div>
+                `;
+                modelRecommendation.className = 'model-recommendation show';
+            } else {
+                const selectedInfo = PERPLEXITY_CONFIG.models[selectedModel];
+                modelRecommendation.innerHTML = `
+                    <div class="model-info-grid">
+                        <div class="model-info-item">
+                            <strong>✅ Selected</strong>
+                            ${selectedInfo.name}
+                        </div>
+                        <div class="model-info-item">
+                            <strong>💰 Cost Level</strong>
+                            ${selectedInfo.costLevel}
+                        </div>
+                    </div>
+                    <div class="cost-info">
+                        <em>${selectedInfo.bestFor}</em>
+                    </div>
+                `;
+                modelRecommendation.className = 'model-recommendation show';
+            }
+        }
+
+        // System prompt generation with model-optimized coaching
+        function generateSystemPrompt(essayType, analysisMode, customFocus) {
+            // Get the actual model to use
+            const modelToUse = selectedModel === 'auto' ? currentRecommendedModel : selectedModel;
+            
+            // Model-optimized base prompts
+            const modelPrompts = {
+                'sonar': 'Provide concise, focused coaching. Be direct and actionable. Emphasize the most critical improvements first.',
+                'sonar-pro': 'Provide comprehensive analysis with good depth. Balance thoroughness with clarity. Include specific examples and suggestions.',
+                'sonar-reasoning': 'Use multi-step analysis. Break down complex issues systematically. Show your reasoning process as you analyze the writing.',
+                'sonar-reasoning-pro': 'Provide the most sophisticated analysis. Use advanced reasoning, consider multiple perspectives, and provide expert-level insights.',
+                'r1-1776': 'Offer alternative perspectives and creative approaches. Question conventional thinking and explore unique angles.'
+            };
+            
+            const modelInstruction = modelPrompts[modelToUse] || modelPrompts['sonar-pro'];
+            const basePrompt = `You are an expert writing coach trained on the principles of Paul Graham and Rega Jha. Your role is to provide sharp, insightful analysis that pushes writers to think deeper and write clearer.
+
+MODEL OPTIMIZATION: ${modelInstruction}
+CURRENT MODEL: ${modelToUse.toUpperCase()}
+
+CORE PRINCIPLES:
+- Write to explore and discover (Graham: "Half your ideas come while writing")
+- Embrace doubt as intellectual energy (Jha: "Doubt, re-articulate, until truest truths outlast interrogation")
+- Sound and substance are linked (Graham: "Good writing sounds good AND is right")
+- Tell what only you can tell - pursue genuine novelty
+- Be independent-minded and curious - resist received wisdom
+- Sharpen voice through repeated practice
+
+ESSAY TYPE DETECTION:
+Before providing your standard analysis, examine the writing to determine its actual essay type:
+
+TYPE DETECTION CRITERIA:
+- Tech: Technical vocabulary, system focus, implementation details, user impact analysis
+- Reflective: Personal growth narrative, learning journey, before/after patterns, introspective voice
+- Analytical: Systematic arguments, evidence-based reasoning, logical frameworks, objective analysis  
+- Personal: Vulnerable moments, emotional truth, specific life details, intimate voice
+- Product: First principles thinking, user research, market validation, design strategy, startup methodology
+
+ANALYSIS REQUIREMENTS:
+Provide exactly 6 sections in your response:
+
+## 0. Essay Type Assessment
+- Analyze vocabulary, voice, evidence patterns, and structure
+- Compare detected type with user's selection (${essayType})
+- If strong mismatch (confidence >0.8), recommend type change with specific reasoning
+- For moderate mismatch (0.6-0.8), suggest considering the alternative type
+- For hybrid essays, identify primary type and note secondary elements
+- Rate your confidence in type detection (Low/Medium/High)
+- Format: "Current Selection: ${essayType} | Detected Type: [your analysis] (Confidence: High/Medium/Low) | Recommendation: [Keep current / Switch to X / Consider hybrid approach] | Reasoning: [2-3 sentences] | Impact: [How this change would improve coaching]"
+
+## 1. Critical Analysis & Questions
+- Identify weak arguments, unstated assumptions, logical gaps
+- Ask 3-4 challenging questions that force deeper thinking
+- Point out where the writer is being vague or safe
+- Push for specificity and evidence
+
+## 2. Clarity Improvements
+- Identify confusing passages or awkward phrasing
+- Suggest structural improvements
+- Point out where ideas need better development
+- Note sentences that could be more precise
+
+## 3. Voice Assessment
+- Evaluate authenticity vs. performance in the writing
+- Identify if the voice feels consistent and genuine
+- Suggest a quick 2-minute writing exercise if voice needs work
+- Comment on personality coming through
+
+## 4. Information Density
+- Analyze ratio of new insights to total words
+- Identify areas that are too sparse or too verbose
+- Suggest where more detail or compression is needed
+- Rate current density as Low/Medium/High
+
+## 5. Next Evaluation Point
+- Estimate word count or time for next review
+- Explain reasoning for this timing
+- Suggest what to focus on in next writing session
+
+Be direct but encouraging. Challenge weak thinking while celebrating genuine insights.`;
+
+            // Add essay type specific guidance
+            const typeAdditions = {
+                tech: '\nTECH ESSAY FOCUS:\n- Push for practical implications and real-world impact\n- Question assumptions about user behavior and adoption\n- Ask: "How does this change what people actually do?"\n- Demand specificity about tradeoffs and limitations',
+                reflective: '\nREFLECTIVE ESSAY FOCUS:\n- Push beyond surface-level insights to deeper patterns\n- Ask: "What story can only you tell from this experience?"\n- Challenge generalizations with specific moments\n- Look for growth and change over time',
+                analytical: '\nANALYTICAL ESSAY FOCUS:\n- Demand evidence for every major claim\n- Challenge the writer to examine underlying assumptions\n- Push for acknowledgment of counterarguments\n- Ask: "What\'s the strongest case against your position?"',
+                personal: '\nPERSONAL ESSAY FOCUS:\n- Push for vulnerability and specific details\n- Challenge performance of emotions vs. genuine feeling\n- Ask: "What\'s really at stake for you personally?"\n- Look for universal truths in specific experiences',
+                product: '\nPRODUCT ESSAY FOCUS:\n- Apply first principles thinking: Break down assumptions to fundamental truths\n- Challenge with Elon Musk\'s 3 questions: 1) What assumptions are you making? 2) What are the core principles? 3) How can you rebuild from scratch?\n- Use 5 Whys technique to dig deeper into problems and solutions\n- Ask: "What would Amazon do?" - obsess over customers, not competitors\n- Push for user-centered evidence: "How do you know customers actually want this?"\n- Demand specificity about value proposition and market validation\n- Quote relevant startup wisdom: "If you\'re competitor-focused, you have to wait. Being customer-focused allows you to be more pioneering"\n- Challenge: "Are you inventing new options nobody\'s thought of before?"\n- Focus on long-term thinking vs. short-term metrics'
+            };
+
+            let fullPrompt = basePrompt + (typeAdditions[essayType] || '');
+
+            // Add analysis mode guidance
+            if (analysisMode === 'quick') {
+                fullPrompt += '\n\nANALYSIS MODE: Quick (400 words max)\n- Focus on core issues and immediate improvements\n- Provide concise, actionable feedback';
+            } else {
+                fullPrompt += '\n\nANALYSIS MODE: Deep (800 words max)\n- Provide comprehensive analysis with detailed suggestions\n- Include examples and thorough examination';
+            }
+
+            // Add custom focus if provided
+            if (customFocus) {
+                fullPrompt += `\n\nCUSTOM COACHING FOCUS: ${customFocus}`;
+            }
+
+            return fullPrompt;
+        }
+
+        // Make API call to Perplexity with current model
+        async function callPerplexityAPI(systemPrompt, essayText) {
+            if (!currentApiKey) {
+                throw new Error('API key not configured');
+            }
+
+            // Determine which model to use
+            const modelToUse = selectedModel === 'auto' ? currentRecommendedModel : selectedModel;
+
+            const response = await fetch(PERPLEXITY_CONFIG.baseUrl, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${currentApiKey}`
+                },
+                body: JSON.stringify({
+                    model: modelToUse,
+                    messages: [
+                        {
+                            role: 'system',
+                            content: systemPrompt
+                        },
+                        {
+                            role: 'user',
+                            content: `Please analyze this essay draft:\n\n${essayText}`
+                        }
+                    ],
+                    max_tokens: analysisMode.value === 'quick' ? 1200 : 2000,
+                    temperature: 0.7
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                if (response.status === 401) {
+                    throw new Error('Invalid API key - please check your Perplexity API key');
+                } else if (response.status === 429) {
+                    throw new Error('Rate limit exceeded - please wait a moment before trying again');
+                } else if (response.status === 400 && errorData.error?.message?.includes('Invalid model')) {
+                    throw new Error(`Model '${modelToUse}' not found. The model may have been deprecated. Please try a different model or contact support.`);
+                } else {
+                    throw new Error(`API error: ${response.status} ${response.statusText}`);
+                }
+            }
+
+            const data = await response.json();
+            return data.choices[0].message.content;
+        }
+
+        // Parse AI response into feedback sections with type detection
+        function parseAIResponse(aiText) {
+            const sections = [];
+            const cleanSections = []; // For storage without HTML
+            const sectionPattern = /##\s*(\d+\.\s*[^\n]+)([\s\S]*?)(?=##\s*\d+\.|$)/g;
+            let match;
+
+            while ((match = sectionPattern.exec(aiText)) !== null) {
+                const title = match[1].replace(/^\d+\.\s*/, '').trim();
+                let content = match[2].trim();
+                
+                // Save clean version first for storage
+                cleanSections.push({
+                    title: title,
+                    content: content
+                });
+                
+                // Add appropriate emoji based on section type
+                let emoji = '';
+                if (title.toLowerCase().includes('type') || title.toLowerCase().includes('assessment')) {
+                    emoji = '🔍';
+                    // Process type assessment for UI updates
+                    processTypeAssessment(content);
+                    // Format the '|' separated content for better readability
+                    content = content.replace(/\|([^|]+)/g, '<br><strong>$1</strong>');
+                }
+                else if (title.toLowerCase().includes('critical') || title.toLowerCase().includes('question')) {
+                    emoji = '🎯';
+                    content = createInteractiveFeedback(content);
+                }
+                else if (title.toLowerCase().includes('clarity')) {
+                    emoji = '✨';
+                    content = createInteractiveFeedback(content);
+                }
+                else if (title.toLowerCase().includes('voice')) {
+                    emoji = '🎭';
+                    content = createInteractiveFeedback(content);
+                }
+                else if (title.toLowerCase().includes('density') || title.toLowerCase().includes('information')) {
+                    emoji = '📊';
+                    // Add numeric density score
+                    content = addDensityScore(content);
+                }
+                else if (title.toLowerCase().includes('next') || title.toLowerCase().includes('evaluation')) {
+                    emoji = '⏭️';
+                    content = createInteractiveFeedback(content);
+                }
+                else {
+                    // Default case - make other sections interactive too
+                    content = createInteractiveFeedback(content);
+                }
+                
+                // Only apply line break conversion if not already interactive
+                const finalContent = content.includes('feedback-point') ? content : content.replace(/\n/g, '<br>');
+                
+                sections.push({
+                    title: `${emoji} ${title}`,
+                    content: finalContent
+                });
+            }
+
+            // Fallback if parsing fails
+            if (sections.length === 0) {
+                sections.push({
+                    title: '🎯 AI Analysis',
+                    content: aiText.replace(/\n/g, '<br>')
+                });
+                cleanSections.push({
+                    title: 'AI Analysis',
+                    content: aiText
+                });
+            }
+
+            // Save clean feedback to storage before returning HTML version
+            if (cleanSections.length > 0 && 
+                !cleanSections[0].title.includes('Error') && 
+                !cleanSections[0].title.includes('Required') &&
+                !cleanSections[0].title.includes('Start Writing') &&
+                analysisMode.value === 'deep' &&
+                currentApiKey &&
+                writingWorkspace.value.trim()) {
+                saveFeedbackToStorage(cleanSections);
+            }
+
+            return sections;
+        }
+
+        // Convert content into interactive feedback points
+        function createInteractiveFeedback(content) {
+            let points = [];
+            
+            // First, try to split by common list markers
+            if (content.includes('•') || /^\s*-\s+/m.test(content) || /^\s*\d+\.\s+/m.test(content)) {
+                // Split by bullet points, dashes, or numbered lists
+                points = content.split(/(?:\n|^)\s*(?:•|-|\d+\.)\s*/)
+                    .map(point => point.trim())
+                    .filter(point => point && point.length > 10);
+            } else {
+                // If no clear list markers, split by double line breaks or strong sentence boundaries
+                points = content.split(/\n\s*\n|\.\s*(?=\n|[A-Z][a-z]+\s+[a-z]+)/)
+                    .map(point => point.trim())
+                    .filter(point => point && point.length > 15);
+            }
+            
+            // If we still don't have good splits, treat as single point
+            if (points.length <= 1) {
+                const words = content.split(' ');
+                const preview = words.slice(0, 6).join(' '); // Changed from 4 to 6 words
+                const full = words.slice(6).join(' '); // Changed from 4 to 6
+                
+                return `<div class="feedback-point" data-point-id="0">
+                    <div class="feedback-point-content" onclick="toggleFeedbackPoint(0)">
+                        <div class="feedback-checkbox" onclick="checkFeedbackPoint(event, 0)"></div>
+                        <div class="feedback-text">
+                            <span class="feedback-preview">${preview}</span><span class="feedback-full"> ${full}</span>
+                        </div>
+                    </div>
+                </div>`;
+            }
+
+            return points.map((point, index) => {
+                // Check if this point starts with list indicators
+                const startsWithListMarker = /^\s*[-•*]\s+/.test(point) || // - • * followed by space
+                                           /^\s*\d+[\.\)]\s+/.test(point) || // numbered lists (1. or 1))
+                                           /^\*\s+/.test(point); // single * with space
+                
+                // Check for double star list items (sufficiently long content)
+                const isDoubleStarListItem = /^\*\*[A-Za-z]/.test(point.trim()) && 
+                                           point.trim().split(' ').length > 6; // More than 6 words = likely list item
+                
+                // Check if it's likely a heading (doesn't start with list marker and matches heading patterns)
+                const isHeading = !startsWithListMarker && !isDoubleStarListItem && (
+                    /^[A-Z][A-Z\s]*:?\s*$/.test(point.trim()) || // ALL CAPS
+                    point.trim().endsWith(':') && point.trim().split(' ').length <= 4 || // Short text ending with colon
+                    /^[A-Z][a-z]+(\s+[A-Z][a-z]+)*:?\s*$/.test(point.trim()) && point.trim().split(' ').length <= 3 || // Title Case short phrases
+                    (/^\*\*[A-Za-z]/.test(point.trim()) && point.trim().split(' ').length <= 6) // **Text but short = heading
+                );
+                
+                const words = point.split(' ');
+                const preview = words.slice(0, 6).join(' ');
+                const full = words.slice(6).join(' ');
+                
+                if (isHeading) {
+                    // Render heading without checkbox
+                    return `<div class="feedback-heading" data-point-id="${index}">
+                        <div class="feedback-point-content">
+                            <div class="feedback-text heading-text">
+                                <strong>${point}</strong>
+                            </div>
+                        </div>
+                    </div>`;
+                } else {
+                    // Render normal interactive point with checkbox
+                    return `<div class="feedback-point" data-point-id="${index}">
+                        <div class="feedback-point-content" onclick="toggleFeedbackPoint(${index})">
+                            <div class="feedback-checkbox" onclick="checkFeedbackPoint(event, ${index})"></div>
+                            <div class="feedback-text">
+                                <span class="feedback-preview">${preview}</span><span class="feedback-full"> ${full}</span>
+                            </div>
+                        </div>
+                    </div>`;
+                }
+            }).join('');
+        }
+
+        // Add density score to information density section
+        function addDensityScore(content) {
+            // Extract essay text for analysis
+            const essayTextElement = document.getElementById('writingWorkspace');
+            if (!essayTextElement) return content;
+            
+            const essayText = essayTextElement.value.trim();
+            if (!essayText) return content;
+            
+            // Calculate density metrics
+            const words = essayText.split(/\s+/).length;
+            const sentences = essayText.split(/[.!?]+/).filter(s => s.trim().length > 0).length;
+            const concepts = (essayText.match(/\b(therefore|however|furthermore|moreover|consequently|specifically|particularly|essentially|ultimately|significantly)\b/gi) || []).length;
+            const technicalTerms = (essayText.match(/\b[A-Z][a-z]*[A-Z][a-z]*\b/g) || []).length; // CamelCase words often indicate technical terms
+            
+            // Calculate density score (0-10)
+            const avgWordsPerSentence = words / sentences;
+            const conceptDensity = (concepts / words) * 100;
+            const technicalDensity = (technicalTerms / words) * 100;
+            
+            // Scoring algorithm
+            let densityScore = 5; // baseline
+            if (avgWordsPerSentence > 20) densityScore += 1;
+            if (avgWordsPerSentence > 25) densityScore += 1;
+            if (conceptDensity > 1) densityScore += 1;
+            if (conceptDensity > 2) densityScore += 1;
+            if (technicalDensity > 0.5) densityScore += 1;
+            if (technicalDensity > 1) densityScore += 1;
+            
+            densityScore = Math.min(10, Math.max(1, densityScore));
+            
+            const infoPerTenWords = ((concepts + technicalTerms) / words * 10).toFixed(1);
+            
+            const scoreHTML = `<div style="background: rgba(var(--color-teal-500-rgb), 0.1); padding: var(--space-12); border-radius: var(--radius-md); margin: var(--space-12) 0;">
+                <strong>📈 Density Metrics:</strong><br>
+                • <strong>Density Score: ${densityScore}/10</strong><br>
+                • Average sentence length: ${avgWordsPerSentence.toFixed(1)} words<br>
+            </div>`;
+            
+            return scoreHTML + content;
+        }
+
+        // Process type assessment from AI response
+        function processTypeAssessment(assessmentContent) {
+            try {
+                // Extract key information using regex patterns
+                const detectedMatch = assessmentContent.match(/Detected Type:\s*([^(]+)/i);
+                const confidenceMatch = assessmentContent.match(/Confidence:\s*(High|Medium|Low)/i);
+                const recommendationMatch = assessmentContent.match(/Recommendation:\s*([^|]+)/i);
+                
+                if (detectedMatch && confidenceMatch) {
+                    const detectedType = detectedMatch[1].trim().toLowerCase();
+                    const confidence = confidenceMatch[1].trim();
+                    const recommendation = recommendationMatch ? recommendationMatch[1].trim() : '';
+                    
+                    // Check if it's a switch recommendation
+                    const switchMatch = recommendation.match(/Switch to (\w+)/i);
+                    if (switchMatch && confidence !== 'Low') {
+                        const suggestedTypeValue = switchMatch[1].toLowerCase();
+                        if (essayTypes[suggestedTypeValue]) {
+                            showTypeMismatchAlert(suggestedTypeValue, detectedType, confidence, recommendation);
+                        }
+                    } else {
+                        hideTypeMismatchAlert();
+                    }
+                    
+                    // Update type evolution tracking
+                    updateTypeEvolution(detectedType, confidence);
+                }
+            } catch (error) {
+                console.log('Could not parse type assessment:', error);
+                hideTypeMismatchAlert();
+            }
+        }
+
+        // Show type mismatch alert
+        function showTypeMismatchAlert(suggestedTypeValue, detectedType, confidence, reasoning) {
+            suggestedType = suggestedTypeValue;
+            const alertText = document.querySelector('.alert-text');
+            const capitalizedSuggested = suggestedTypeValue.charAt(0).toUpperCase() + suggestedTypeValue.slice(1);
+            
+            alertText.innerHTML = `⚡ Type mismatch detected! Your writing appears to be <strong>${detectedType}</strong> (${confidence} confidence). Consider switching to <strong>${capitalizedSuggested}</strong> for better coaching.`;
+            
+            typeMismatchAlert.style.display = 'block';
+        }
+
+        // Hide type mismatch alert
+        function hideTypeMismatchAlert() {
+            typeMismatchAlert.style.display = 'none';
+            suggestedType = null;
+        }
+
+        // Update type evolution tracking
+        function updateTypeEvolution(detectedType, confidence) {
+            const currentSelection = essayType.value;
+            const evolution = {
+                timestamp: new Date().toLocaleTimeString(),
+                selected: currentSelection,
+                detected: detectedType,
+                confidence: confidence
+            };
+            
+            lastTypeAnalysis.evolution.push(evolution);
+            
+            // Keep only last 5 evolutions
+            if (lastTypeAnalysis.evolution.length > 5) {
+                lastTypeAnalysis.evolution.shift();
+            }
+            
+            lastTypeAnalysis.detectedType = detectedType;
+            lastTypeAnalysis.confidence = confidence;
+        }
+
+        // Accept suggested type
+        function acceptSuggestedType() {
+            if (suggestedType && essayTypes[suggestedType]) {
+                essayType.value = suggestedType;
+                hideTypeMismatchAlert();
+                
+                // Show feedback about the change
+                const changeNotification = document.createElement('div');
+                changeNotification.className = 'type-evolution';
+                changeNotification.innerHTML = `
+                    <h4>📝 Essay Type Updated</h4>
+                    <p>Switched to <strong>${suggestedType.charAt(0).toUpperCase() + suggestedType.slice(1)}</strong> for more targeted coaching. Your next analysis will use this new perspective.</p>
+                `;
+                
+                const firstSection = document.querySelector('.feedback-section');
+                if (firstSection) {
+                    firstSection.insertAdjacentElement('afterend', changeNotification);
+                    
+                    // Remove notification after 5 seconds
+                    setTimeout(() => {
+                        changeNotification.remove();
+                    }, 5000);
+                }
+            }
+        }
+
+        // Analyze writing with real AI
+        async function analyzeWriting() {
+            if (!writingWorkspace) {
+                console.error('Writing workspace element not found');
+                return;
+            }
+            
+            const text = writingWorkspace.value.trim();
+            if (!text) {
+                showFeedback([{
+                    title: "Start Writing",
+                    content: "I need some text to analyze. Start writing about anything that interests you—the analysis will come once you've put words on paper."
+                }]);
+                return;
+            }
+
+            if (!currentApiKey) {
+                showFeedback([{
+                    title: "API Key Required",
+                    content: "Please enter your Perplexity API key above to get AI-powered analysis. You can get an API key from <a href='https://perplexity.ai' target='_blank'>perplexity.ai</a>."
+                }]);
+                return;
+            }
+
+            const selectedType = essayType ? essayType.value : 'personal';
+            const selectedMode = analysisMode ? analysisMode.value : 'deep';
+            const customFocus = customPrompt ? customPrompt.value.trim() : '';
+            
+            showLoading();
+            
+            try {
+                const systemPrompt = generateSystemPrompt(selectedType, selectedMode, customFocus);
+                const aiResponse = await callPerplexityAPI(systemPrompt, text);
+                const feedback = parseAIResponse(aiResponse);
+                showFeedback(feedback);
+            } catch (error) {
+                console.error('Analysis error:', error);
+                showFeedback([{
+                    title: "Analysis Error",
+                    content: `<div class="error-message">Failed to analyze your writing: ${error.message}</div><p>Please check your API key and try again. If the problem persists, you may have hit rate limits.</p>`
+                }]);
+            }
+        }
+
+
+
+        function showLoading() {
+            const modelToUse = selectedModel === 'auto' ? currentRecommendedModel : selectedModel;
+            const modelInfo = PERPLEXITY_CONFIG.models[modelToUse];
+            feedbackContainer.innerHTML = `
+                <div class="loading">
+                    🤖 ${modelInfo.name} is analyzing your writing...
+                    <div style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-top: var(--space-8);">
+                        Using ${modelInfo.description.toLowerCase()} for ${modelInfo.bestFor.toLowerCase()}
+                    </div>
+                </div>
+            `;
+            
+            // Remove has-feedback class to return compass to default position during loading
+            const outputSection = document.querySelector('.output-section');
+            if (outputSection) {
+                outputSection.classList.remove('has-feedback');
+            }
+        }
+
+        function showFeedback(feedbackArray) {
+            let html = '';
+            feedbackArray.forEach((section, sectionIndex) => {
+                // Wrap words in title for word-by-word reveal
+                const titleWords = section.title.split(/\s+/).map(word => 
+                    `<span class="heading-word">${word}</span>`
+                ).join(' ');
+                
+                html += `<div class="feedback-section">`;
+                html += `<div class="feedback-section-header">`;
+                html += `<h3>${titleWords}</h3>`;
+                
+                // Add show all button only for interactive sections
+                if (section.content.includes('feedback-point')) {
+                    html += `<button class="show-all-btn" onclick="toggleShowAll(this.closest('.feedback-section'))">Show All</button>`;
+                }
+                
+                html += `</div>`;
+                html += `${section.content}`;
+                html += `</div>`;
+            });
+            feedbackContainer.innerHTML = html;
+            
+            // Add class to output section to reposition compass when feedback is present
+            const outputSection = document.querySelector('.output-section');
+            if (outputSection) {
+                outputSection.classList.add('has-feedback');
+            }
+            
+            // Setup heading reveals and feedback hovers for newly added feedback
+            setTimeout(() => {
+                const feedbackHeadings = feedbackContainer.querySelectorAll('.feedback-section h3');
+                feedbackHeadings.forEach(heading => {
+                    setupHeadingReveal(heading);
+                });
+                
+                // Setup hover delays for interactive feedback points
+                setupFeedbackHovers();
+            }, 100);
+        }
+
+        // Interactive feedback functions
+        let feedbackHoverTimeouts = new Map();
+
+        function toggleFeedbackPoint(pointId) {
+            const point = document.querySelector(`[data-point-id="${pointId}"]`);
+            if (!point) return;
+            
+            // Clear any existing timeout for this point
+            if (feedbackHoverTimeouts.has(pointId)) {
+                clearTimeout(feedbackHoverTimeouts.get(pointId));
+                feedbackHoverTimeouts.delete(pointId);
+            }
+            
+            // Toggle expanded state
+            point.classList.toggle('show-expanded');
+            
+            // If we're removing expanded state, add delay
+            if (!point.classList.contains('show-expanded')) {
+                const timeout = setTimeout(() => {
+                    point.classList.remove('show-expanded');
+                }, 3000); // 3 second delay
+                feedbackHoverTimeouts.set(pointId, timeout);
+            }
+        }
+
+        function checkFeedbackPoint(event, pointId) {
+            event.stopPropagation(); // Prevent triggering the hover
+            
+            const point = document.querySelector(`[data-point-id="${pointId}"]`);
+            if (!point) return;
+            
+            const checkbox = point.querySelector('.feedback-checkbox');
+            const isChecked = checkbox.classList.contains('checked');
+            
+            if (isChecked) {
+                // Uncheck
+                checkbox.classList.remove('checked');
+                point.classList.remove('completed');
+            } else {
+                // Check
+                checkbox.classList.add('checked');
+                point.classList.add('completed');
+            }
+        }
+
+        function toggleShowAll(sectionElement) {
+            const showAllBtn = sectionElement.querySelector('.show-all-btn');
+            const points = sectionElement.querySelectorAll('.feedback-point');
+            const isShowingAll = showAllBtn.classList.contains('active');
+            
+            // Clear all pending hover timeouts for this section
+            points.forEach((point, index) => {
+                const pointId = point.getAttribute('data-point-id') || index;
+                if (feedbackHoverTimeouts.has(pointId)) {
+                    clearTimeout(feedbackHoverTimeouts.get(pointId));
+                    feedbackHoverTimeouts.delete(pointId);
+                }
+            });
+            
+            if (isShowingAll) {
+                // Hide all
+                showAllBtn.classList.remove('active');
+                showAllBtn.textContent = 'Show All';
+                sectionElement.classList.remove('show-all');
+                points.forEach(point => {
+                    point.classList.remove('show-expanded');
+                });
+            } else {
+                // Show all
+                showAllBtn.classList.add('active');
+                showAllBtn.textContent = 'Hide All';
+                sectionElement.classList.add('show-all');
+                points.forEach(point => {
+                    point.classList.add('show-expanded');
+                });
+            }
+        }
+
+        // Set up hover delays for feedback points
+        function setupFeedbackHovers() {
+            document.querySelectorAll('.feedback-point').forEach((point, index) => {
+                const pointId = point.getAttribute('data-point-id') || index;
+                const section = point.closest('.feedback-section');
+                
+                point.addEventListener('mouseenter', () => {
+                    // Don't add hover effects if section is in "show all" mode
+                    if (section && section.classList.contains('show-all')) {
+                        return;
+                    }
+                    
+                    // Clear any existing timeout
+                    if (feedbackHoverTimeouts.has(pointId)) {
+                        clearTimeout(feedbackHoverTimeouts.get(pointId));
+                        feedbackHoverTimeouts.delete(pointId);
+                    }
+                    point.classList.add('show-expanded');
+                });
+                
+                point.addEventListener('mouseleave', () => {
+                    // Don't hide if section is in "show all" mode
+                    if (section && section.classList.contains('show-all')) {
+                        return;
+                    }
+                    
+                    // Set timeout to hide after delay
+                    const timeout = setTimeout(() => {
+                        point.classList.remove('show-expanded');
+                    }, 2000); // 2 second delay after hover out
+                    feedbackHoverTimeouts.set(pointId, timeout);
+                });
+            });
+        }
+
+        // Event listeners
+        
+        modelSelect.addEventListener('change', (e) => {
+            selectedModel = e.target.value;
+            updateModelRecommendation();
+        });
+        
+        // Update model recommendations when essay type or analysis mode changes
+        essayType.addEventListener('change', updateModelRecommendation);
+        analysisMode.addEventListener('change', updateModelRecommendation);
+        
+        writingWorkspace.addEventListener('input', () => {
+            updateWordCount();
+            // Always ensure auto-save is running when user starts writing
+            if (writingWorkspace.value.trim()) {
+                if (!backupTimer) {
+                    startBackupTimer();
+                    updateBackupStatus();
+                    // Update UI to show auto-save is active
+                    toggleBackupControls();
+                }
+            }
+            // Toggle blinking underscore
+            const wrapper = writingWorkspace.closest('.writing-workspace-wrapper');
+            if (wrapper) {
+                const underscore = wrapper.querySelector('::after');
+                if (writingWorkspace.value.trim()) {
+                    wrapper.classList.add('has-text');
+                } else {
+                    wrapper.classList.remove('has-text');
+                }
+            }
+        });
+        
+        writingWorkspace.addEventListener('focus', () => {
+            const wrapper = writingWorkspace.closest('.writing-workspace-wrapper');
+            if (wrapper && !writingWorkspace.value.trim()) {
+                wrapper.classList.remove('has-text');
+            }
+        });
+        
+        customPrompt.addEventListener('input', () => {
+            const wrapper = customPrompt.closest('.custom-prompt-wrapper');
+            if (wrapper) {
+                if (customPrompt.value.trim()) {
+                    wrapper.classList.add('has-text');
+                } else {
+                    wrapper.classList.remove('has-text');
+                }
+            }
+        });
+        
+        customPrompt.addEventListener('focus', () => {
+            const wrapper = customPrompt.closest('.custom-prompt-wrapper');
+            if (wrapper && !customPrompt.value.trim()) {
+                wrapper.classList.remove('has-text');
+            }
+        });
+        
+        // Handle API key input blinking underscore
+        apiKeyInput.addEventListener('input', (e) => {
+            const apiKey = e.target.value.trim();
+            const underscore = document.getElementById('apiKeyUnderscore');
+            if (underscore) {
+                if (apiKey) {
+                    underscore.style.display = 'none';
+                } else {
+                    underscore.style.display = 'inline-block';
+                }
+            }
+            if (apiKey) {
+                updateApiStatus(validateApiKey(apiKey));
+            } else {
+                apiStatus.style.display = 'none';
+                currentApiKey = null;
+            }
+        });
+        
+        coachMeBtn.addEventListener('click', () => {
+            analysisMode.value = 'deep';
+            analyzeWriting();
+            
+            // Scroll to feedback section after a brief delay to allow analysis to start
+            setTimeout(() => {
+                const feedbackContainer = document.getElementById('feedbackContainer');
+                if (feedbackContainer) {
+                    feedbackContainer.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }, 500);
+        });
+        
+        acceptSuggestedTypeBtn.addEventListener('click', acceptSuggestedType);
+        
+        // Hide mismatch alert when essay type is manually changed
+        essayType.addEventListener('change', () => {
+            hideTypeMismatchAlert();
+        });
+        
+        // Backup control event listeners
+        manualBackupBtn.addEventListener('click', () => {
+            if (writingWorkspace.value.trim()) {
+                createBackup();
+                // Show a brief notification that files were saved
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed; top: 20px; right: 20px; 
+                    background: var(--color-success); color: white; 
+                    padding: 12px 16px; border-radius: 8px; 
+                    font-size: 14px; z-index: 1000;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                `;
+                notification.textContent = '✓ Backup saved to browser storage';
+                document.body.appendChild(notification);
+                setTimeout(() => notification.remove(), 3000);
+            } else {
+                alert('No content to backup. Start writing first!');
+            }
+        });
+        
+        viewBackupsBtn.addEventListener('click', showBackupList);
+        
+        feedbackHistoryBtn.addEventListener('click', showFeedbackHistory);
+        
+        stopBackupBtn.addEventListener('click', () => {
+            stopBackupTimer();
+            toggleBackupControls();
+            updateBackupStatus();
+        });
+        
+        startBackupBtn.addEventListener('click', () => {
+            if (writingWorkspace.value.trim()) {
+                startBackupTimer();
+                toggleBackupControls();
+                updateBackupStatus();
+            } else {
+                alert('Start writing first to enable auto-save!');
+            }
+        });
+        
+        // Add smart suggestion when hovering over coach me button
+        coachMeBtn.addEventListener('mouseenter', () => {
+            const recommended = getRecommendedModel();
+            const modelInfo = PERPLEXITY_CONFIG.models[recommended];
+            coachMeBtn.title = `🎓 Deep analysis with ${modelInfo.name} - ${modelInfo.bestFor.toLowerCase()}`;
+        });
+
+        // Message listener for restoring feedback from history window
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'restoreFeedback') {
+                const feedback = feedbackHistory[event.data.index];
+                if (feedback) {
+                    showFeedback(feedback.feedback);
+                }
+            }
+        });
+
+        // Scroll to center writing area on workspace hover
+        const inputSection = document.querySelector('.input-section');
+        const writingWorkspaceEl = document.getElementById('writingWorkspace');
+        
+        if (inputSection && writingWorkspaceEl) {
+            inputSection.addEventListener('mouseenter', () => {
+                // Calculate position to center the writing workspace
+                const rect = writingWorkspaceEl.getBoundingClientRect();
+                const absoluteTop = window.pageYOffset + rect.top;
+                const middle = absoluteTop - (window.innerHeight / 2) + (rect.height / 2);
+                
+                window.scrollTo({
+                    top: middle,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Initialize
+        updateWordCount();
+        updateModelRecommendation();
+        toggleBackupControls();
+        loadBackupsFromStorage(); // Load existing backups from browser storage
+        loadFeedbackFromStorage(); // Load existing feedback from browser storage
+        updateBackupStatus();
+        initializeHeadingReveals(); // Setup word-by-word reveal for headings
+        
+        // Show deprecation notice if old API key format is detected
+        function checkForDeprecatedUsage() {
+            const savedContent = writingWorkspace.value;
+            if (savedContent && currentApiKey) {
+                // Show helpful migration notice
+                console.log('Writing Coach: Now using updated Perplexity API models (sonar, sonar-pro, etc.). Old llama-3.1-sonar models deprecated as of February 2025.');
+            }
+        }
+        
+        setTimeout(checkForDeprecatedUsage, 1000);
+    </script>
+</body>
+</html>
