@@ -25,7 +25,10 @@ A simple AI-powered writing coach that provides sharp analysis and guided discov
 3. Navigate to API settings and generate your API key
 4. Copy your API key (starts with `pplx-`)
 
-### 2. **Run the Application**
+### 2. Try it out 
+1. Start writing at - https://write.gentleintelligence.space/
+
+### 3. **Run the Application**
 
 #### Option A: Simple HTTP Server (Recommended)
 ```bash
